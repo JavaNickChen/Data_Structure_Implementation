@@ -1,6 +1,5 @@
 import unittest
-from src.Chen.hash_map_based_dictionary_mutable.Dicationary import *
-
+from Dicationary import *
 
 class TestMutableDictionary(unittest.TestCase):
 
