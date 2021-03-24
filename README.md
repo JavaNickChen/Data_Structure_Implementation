@@ -1,25 +1,31 @@
  
 
-#Title  
+# Title  
 	Data_Structure_Implementation for Laboratory Works of CPO Course
-#Group Name and List of Group Menmber   
+	
+# Group Name and List of Group Menmber   
 	Group Name: PZEZ  
 	Group Member:   Chen Jinhua && Wang Maoyu  
-#Laboratory Work Number   
+	
+# Laboratory Work Number   
+
 	1
-#Variant Description   
+# Variant Description   
 	Dictionary based on hash-map (collision resolution: separate chaining)
-#Synopsis
+	
+# Synopsis
 As a team, Chen Jinhua and Wang Maoyu completed the tasks required by CPO Lab 1. We have finished a Dictionary based on hash-map (collision resolution: separate chaining) with mutable vertion and immutable vertion.Chen Jinhua is responsible for the development of the mutable version, and Wang Maoyu is responsible for the immutable version.    
 
 In this laboratory work, We have completed various basic operations on the dictionary structure with python LIST.These operations include: add, remove, convert to list, convert from list, Find element, Filter data structure, Map structure, and reduce.We also create a iterator and implement mempty and mconcat funtion.    
 
 Our code has been committed into the github https://github.com/JavaNickChen/Data_Structure_Implementation
-#Contribution Summary for Each Group Member
+
+# Contribution Summary for Each Group Member
 Chen, Jinhua has completed the mutable version of the dictionary structure. The code he has completed is under the file path 'SRC /Chen';     
  
 Wang, Maoyu has implemented an immutable version of the dictionary structure, and the code he has completed is under the file path 'SRC /Wang'.
-#Explanation of Taken Design Decisions and Analysis   
+
+# Explanation of Taken Design Decisions and Analysis   
 Design Decision for mutable version:    
 
 	'hashTable' is the key variable in class Dictionary.
@@ -28,11 +34,9 @@ Design Decision for mutable version:
         A 'ChainNode' store a key and relevant values. And the dictionary support the different values with the same key.
 Design Decision for immutable version:    
 
-	dh
+	In the immutable version, we use two different lists to store the key and value respectively, and ensure the consistency of access to the key list and the valve list index in the function. A new dictionary is returned in each operation. We use  nested lists to implementate separate chaining.
 
-
-
-#Work Demonstration
+# Work Demonstration
 Use 'cd' command-line to go to the file in the path of the local computer, and execute one of the following command-line statements to execute the corresponding test file.  
  
 	python DictionaryTest.py  
