@@ -34,7 +34,9 @@ Design Decision for mutable version:
         A 'ChainNode' store a key and relevant values. And the dictionary support the different values with the same key.
 Design Decision for immutable version:    
 
-	In the immutable version, we use two different lists to store the key and value respectively, and ensure the consistency of access to the key list and the valve list index in the function. A new dictionary is returned in each operation. We use  nested lists to implementate separate chaining.
+	In the immutable version, we use two different lists to store the key and value respectively, and ensure the consistency of access to the key list and the valve list index in the function.     
+	A new dictionary is returned in each operation.    
+	We use  nested lists to implementate separate chaining.
 
 # Work Demonstration
 Use 'cd' command-line to go to the file in the path of the local computer, and execute one of the following command-line statements to execute the corresponding test file.  
@@ -45,5 +47,5 @@ Use 'cd' command-line to go to the file in the path of the local computer, and e
 The file DictionaryTest.py is corresponding to testing the work done by Chen Jinhua;   
 The file testCPO.py is corresponding to tesing the work done by Wang Maoyu.
 
-#Conclusion   
+# Conclusion   
 According to the test results, the dictionary model we developed can effectively meet the needs of dictionary access, modification, deletion, iteration, etc., while ensuring the mutable/immutable data structure of the dictionary. Compared with the dictionary data structure that comes with python, our model still has some flaws for some unconventional inputs.
