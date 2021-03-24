@@ -1,4 +1,10 @@
-
+'''
+    Hash map/table based Dictionary Structure:
+        'hashTable' is the key variable in class Dictionary.
+        'hashTable' is built-in list of Python, and consists of 'HeadNode' (class).
+        'HeadNode' refer to a Singly Linked List which consists of 'ChainNode'.
+        A 'ChainNode' store a key and relevant values.
+'''
 class ChainNode:
     def __init__(self):
         # 'key' and 'value' store the pair of (key,value)
