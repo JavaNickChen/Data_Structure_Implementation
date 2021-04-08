@@ -1,10 +1,12 @@
 '''
     Hash map/table based Dictionary Structure:
         'hashTable' is the key variable in class Dictionary.
-        'hashTable' is built-in list of Python, and consists of 'HeadNode' (class).
-        'HeadNode' refer to a Singly Linked List which consists of 'ChainNode'.
+        'hashTable' is built-in list of Python, and consists of 'HeadNode' (a class).
+        'HeadNode' refer to a Singly Linked List which consists of 'ChainNode' (a class).
         A 'ChainNode' store a key and relevant values.
 '''
+
+
 class ChainNode:
     def __init__(self):
         # 'key' and 'value' store the pair of (key,value)
@@ -34,7 +36,10 @@ class Dictionary(object):
     # To convert the 'key' to hash address.
     # Return: the integer between 0 to 9.
     def hash_func(self, key):
-        if type(key) in [list, dict, set, tuple] or (key is None):
+        # List, dict and set are unhashable type. We cannot call __hash__() if the type of key is list, dict or set.
+        # 没有考虑到多键情况。应该支持传入的key是list、set和tuple类型的。
+        # 但是需要将list、set转换为tuple，且进行重复检查。若有重复的键，则应该报错。
+        if type(key) in [list, dict, set] or (key is None):
             return -1  # '-1' means that the key is invalid
         return key.__hash__() % self.length
 
@@ -48,6 +53,7 @@ class Dictionary(object):
             return [True, hash_address]
 
     # Add a new element by key.
+    # 应该支持value是list\set\tuple\dict类型。
     def add(self, key, value):
         [is_valid, message] = self.validation_check(key, value)
         if not is_valid:
@@ -117,20 +123,17 @@ class Dictionary(object):
                     keys.append(node.key)
                     keys.sort()
                     values.insert(keys.index(node.key), node.values)
-        return [keys, values]
+        result = []
+        for index in range(0, len(keys)):
+            result.append((keys[index], values[index]))
+        return result
 
     # Conversion to built-in list.
-    def from_list(self, keys, values):
-        if len(keys) != len(values):
-            return "Fail. The length of key set and value set are not equal."
-
-        for index in range(len(keys)):
-            if type(values[index]) is list:
-                tmp_list = values[index]
-                for value in tmp_list:
-                    self.add(keys[index], value)
-            else:
-                self.add(keys[index], values[index])
+    def from_list(self, lst):
+        for element in lst:
+            key = element[0]
+            value = element[1]
+            self.add(key, value)
 
     # Find element by specific key.
     def get_by_key(self, key):
