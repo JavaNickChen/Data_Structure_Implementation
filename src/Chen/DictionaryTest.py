@@ -1,18 +1,27 @@
 import unittest
-from Dicationary import *
+from Dictionary import Dictionary
+# import Dictionary
 
-class TestMutableDictionary(unittest.TestCase):
+
+class DictionaryTest(unittest.TestCase):
 
     def test_add(self):
         dictionary = Dictionary()
-        self.assertEqual(dictionary.to_list(), [[], []])
+        self.assertEqual(dictionary.to_list(), [])
         dictionary.add("score", 89)
         self.assertEqual(dictionary.get_by_key("score"), [89])
-        self.assertEqual(dictionary.to_list(), [["score"], [[89]]])
+        self.assertEqual(dictionary.to_list(), [("score", [89])])
         dictionary.add("score", 78)
-        self.assertEqual(dictionary.to_list(), [["score"], [[89, 78]]])
+        self.assertEqual(dictionary.to_list(), [("score", [89, 78])])
         dictionary.add("gender", "male")
-        self.assertEqual(dictionary.to_list(), [["gender", "score"], [["male"], [89, 78]]])
+        self.assertEqual(dictionary.to_list(), [("gender", ["male"]), ("score", [89, 78])])
+
+        dictionary2 = Dictionary()
+        temp1 = [23, 34]
+        temp2 = [23, 34]
+        dictionary2.add(temp1, 'test_value_1')
+        dictionary2.add(temp2, 'value2')
+        self.assertEqual(dictionary2.to_list(), [([23, 34], ['test_value_1', 'value2'])])
 
     def test_remove_by_key(self):
         dictionary = Dictionary()
@@ -43,7 +52,7 @@ class TestMutableDictionary(unittest.TestCase):
         dictionary.add("others", 10)
         dictionary.add("others", 100)
         self.assertEqual(dictionary.to_list(),
-                         [["age", "gender", "name", "others"], [[23], ["male"], ["Nick"], [10, 100]]])
+                         [("age", [23]), ("gender",["male"]), ("name", ["Nick"]), ("others", [10, 100])])
 
     def test_from_list(self):
         list_keys = ["name", "age", "gender", "others"]

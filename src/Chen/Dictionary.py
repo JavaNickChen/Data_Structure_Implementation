@@ -1,9 +1,13 @@
+import logging as logger
+
 '''
     Hash map/table based Dictionary Structure:
         'hashTable' is the key variable in class Dictionary.
         'hashTable' is built-in list of Python, and consists of 'HeadNode' (a class).
         'HeadNode' refer to a Singly Linked List which consists of 'ChainNode' (a class).
         A 'ChainNode' store a key and relevant values.
+        Multi-key is supported, e.g. a dictionary object like {(key1, key2):[value1], key3:[value2]}
+        Multi-value is supported, e.g. a dictionary object like {key1:[value1, [value2, value3]], key2:[value4]}
 '''
 
 
@@ -35,32 +39,51 @@ class Dictionary(object):
 
     # To convert the 'key' to hash address.
     # Return: the integer between 0 to 9.
-    def hash_func(self, key):
-        # List, dict and set are unhashable type. We cannot call __hash__() if the type of key is list, dict or set.
-        # 没有考虑到多键情况。应该支持传入的key是list、set和tuple类型的。
-        # 但是需要将list、set转换为tuple，且进行重复检查。若有重复的键，则应该报错。
-        if type(key) in [list, dict, set] or (key is None):
-            return -1  # '-1' means that the key is invalid
+    def get_hash_address(self, key):
+        # List and set are unhashable type. We cannot call __hash__() if the type of key is list or set.
+        # So transform the type into 'tuple' if needed.
+        if type(key) is set:
+            key = tuple(key)
+        elif type(key) is list:
+            key = tuple(key)
         return key.__hash__() % self.length
 
-    # To validate the 'key' and 'value'
-    # If 'key' and 'value' are valid, return the hash address and the True.
-    def validation_check(self, key, value):
-        hash_address = self.hash_func(key)
-        if (hash_address == -1) or (value is None):
-            return [False, "Fail. Invalid key or value"]
+    # To check whether key and value are valid.
+    # If they are valid, return True; otherwise, return False.
+    def validate(self, key=None, value=None):
+        if self.validate_key(key) and self.validate_value(value):
+            return True
         else:
-            return [True, hash_address]
+            return False
 
-    # Add a new element by key.
-    # 应该支持value是list\set\tuple\dict类型。
+    # To check whether 'value' is valid
+    # If the 'value' is valid, return True; otherwise, return False.
+    def validate_value(self, value=None):
+        if value is None:
+            logger.error("\'None\' value is invalid.")
+            return False
+        return True
+
+    # To check whether 'key' is valid
+    # If the 'key' is valid, return True; otherwise, return False.
+    def validate_key(self, key=None):
+        if type(key) is dict:
+            logger.error("Dict type of key is not suitable and supported.")
+            return False
+        if (key is None) or (len(key) == 0):
+            logger.error("\'None\' or empty key is invalid")
+            return False
+        return True
+
+    # Add a new element by key and value.
     def add(self, key, value):
-        [is_valid, message] = self.validation_check(key, value)
-        if not is_valid:
-            return "Fail. Invalid key or value"
-
-        # If is_valid is True, the 'message' is hash_address.
-        head_node = self.hashTable[message]
+        # Validation check
+        if not self.validate(key, value):
+            logger.error("Fail to add new element.")
+            return
+        hash_address = self.get_hash_address(key)
+        # To get the the Singly Linked List used to deal with collision.
+        head_node = self.hashTable[hash_address]
 
         # Create a new node and assign values.
         node_new = ChainNode()
@@ -86,7 +109,7 @@ class Dictionary(object):
                             head_node.singlyLinkedList[index].values.append(value)
                             head_node.count = head_node.count + 1
                         break
-        return "Successfully store"
+        logger.info("Successfully add a new element.")
 
     # remove an element by key.
     def remove_by_key(self, key):
@@ -115,6 +138,8 @@ class Dictionary(object):
 
     # Conversion to built-in list.
     def to_list(self):
+        if self.size() == [0, 0]:
+            return []
         keys = []
         values = []
         for head_node in self.hashTable:
@@ -137,7 +162,7 @@ class Dictionary(object):
 
     # Find element by specific key.
     def get_by_key(self, key):
-        hash_address = self.hash_func(key)
+        hash_address = self.get_hash_address(key)
         if key == -1:
             return "Fail. Invalid key."
         head_node = self.hashTable[hash_address]
