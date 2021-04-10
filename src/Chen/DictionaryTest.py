@@ -9,7 +9,7 @@ class DictionaryTest(unittest.TestCase):
         dictionary = Dictionary()
         self.assertEqual(dictionary.to_list(), [])
         dictionary.add("score", 89)
-        self.assertEqual(dictionary.get_by_key("score"), [89])
+        self.assertEqual(dictionary.get_by_key("score"), 89)
         self.assertEqual(dictionary.to_list(), [("score", [89])])
         dictionary.add("score", 78)
         self.assertEqual(dictionary.to_list(), [("score", [89, 78])])
@@ -55,42 +55,38 @@ class DictionaryTest(unittest.TestCase):
                          [("age", [23]), ("gender",["male"]), ("name", ["Nick"]), ("others", [10, 100])])
 
     def test_from_list(self):
-        list_keys = ["name", "age", "gender", "others"]
-        list_values = ["Nick", 23, "male", [10, 100]]
+        lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
         dictionary = Dictionary()
-        dictionary.from_list(list_keys, list_values)
-        self.assertEqual(dictionary.to_list(), [["age", "gender", "name", "others"], [[23], ["male"], ["Nick"], [10, 100]]])
+        dictionary.from_list(lst)
+        self.assertEqual(dictionary.get_by_key('gender'), 'male')
+        self.assertEqual(dictionary.to_list(), [('age', 23), ('gender', 'male'), ('name', 'Nick'), ('others', [10, 100])])
 
     def test_get_by_key(self):
-        list_keys = ["name", "age", "gender", "others"]
-        list_values = ["Nick", 23, "male", [10, 100]]
+        lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
         dictionary = Dictionary()
-        dictionary.from_list(list_keys, list_values)
+        dictionary.from_list(lst)
         self.assertEqual(dictionary.get_by_key("others"), [10, 100])
 
     def test_filter(self):
-        list_keys = ["name", "age", "gender", "others"]
-        list_values = ["Nick", 23, "male", [10, 100]]
+        lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
         dictionary = Dictionary()
-        dictionary.from_list(list_keys, list_values)
+        dictionary.from_list(lst)
         result_even = dictionary.filter("even_value")
         self.assertEqual(result_even, ["others"])
         result_odd = dictionary.filter("odd_value")
         self.assertEqual(result_odd, ["age", "gender", "name"])
 
     def test_map_my(self):
-        list_keys = ["age", "score", "length"]
-        list_values = [23, 99, 78]
+        lst = [('score', [98, 99]), ('age', 23), ('length', 50)]
         dictionary = Dictionary()
-        dictionary.from_list(list_keys, list_values)
+        dictionary.from_list(lst)
         dictionary.map_my(lambda x: x + 1)
-        self.assertEqual(dictionary.to_list(), [["age", "length", "score"], [[24], [79], [100]]])
+        self.assertEqual(dictionary.to_list(), [('age', 24), ('length', 51), ('score', [99, 100])])
 
     def test_reduce_my(self):
-        list_keys = ["age", "score"]
-        list_values = [[23, 22, 22], [101, 100, 99]]
+        lst = [('age', [23, 22, 22]), ('score', [101, 100, 99])]
         dictionary = Dictionary()
-        dictionary.from_list(list_keys, list_values)
+        dictionary.from_list(lst)
         result = dictionary.reduce_my(lambda y, x: x + y, "score", 1)
         self.assertEqual(result, 301)
 
@@ -100,17 +96,15 @@ class DictionaryTest(unittest.TestCase):
         self.assertRaises(StopIteration, lambda: next(i))
 
     def test_mconcat(self):
-        list_keys_1 = ["age", "score"]
-        list_values_1 = [23, 99]
-        list_keys_2 = ["length"]
-        list_values_2 = [100]
+        list_1 = [('age', 23), ('score', 99)]
+        list_2 = [('length', 100)]
         dictionary_1 = Dictionary()
-        dictionary_1.from_list(list_keys_1, list_values_1)
+        dictionary_1.from_list(list_1)
         dictionary_2 = Dictionary()
-        dictionary_2.from_list(list_keys_2, list_values_2)
+        dictionary_2.from_list(list_2)
+
         dictionary_1.mconcat(dictionary_2)
-        [keys, values] = dictionary_1.to_list()
-        self.assertEqual([keys, values], [["age", "length", "score"], [[23], [100], [99]]])
+        self.assertEqual(dictionary_1.to_list(), [('age', 23), ('length', 100), ('score', 99)])
 
 
 if __name__ == '__main__':
