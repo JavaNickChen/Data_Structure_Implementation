@@ -241,7 +241,7 @@ class Dictionary(object):
         return self
 
     def __next__(self):
-        # 当head_node_index所指向的‘单链表’上的结点都访问完毕后，寻找下一个结点所在的哈希地址（序号）
+        # to find next node if the nodes in the chain are all visited.
         def get_new_head_node_index(old_head_node_index):
             # '-1' means that there is no more new node not visited.
             new_head_index = -1
@@ -259,9 +259,9 @@ class Dictionary(object):
         value = None
         head_node = self.hashTable[self.iter_head_node_index]
 
-        # 如果该哈希地址上没有（key, value）则不需要遍历。head_node.count > 0 表示有元素
+        # head_node.count > 0 means node existing.
         if len(head_node.keys) > 0:
-            # 该链表上有结点没有被访问
+            # There are nodes in the linked list is not accessed
             self.iter_chain_node_index += 1
             if len(head_node.keys) > self.iter_chain_node_index:
                 keys_values_list = head_node.singlyLinkedList
@@ -271,13 +271,13 @@ class Dictionary(object):
                     value = node.values[0]
                 else:
                     value = node.values
-            # 该链表上的所有结点都被访问了
+            # All nodes in the linked list have been accessed. The new node should be accessed.
             else:
-                # 查找下一个结点所在的哈希地址（序号）
+                # Find the hash address of the next node
                 new_hash_address = get_new_head_node_index(self.iter_head_node_index)
-                # 找到没有被访问的新结点
+                # Find a new node that has not been visited.
                 if new_hash_address != -1:
-                    # 更新全局的哈希地址（序号）和链表上的结点序号
+                    # update the hash address and the node index.
                     self.iter_head_node_index = new_hash_address
                     self.iter_chain_node_index = 0
                     head_node = self.hashTable[new_hash_address]
@@ -289,14 +289,14 @@ class Dictionary(object):
                         value = node.values[0]
                     else:
                         value = node.values
-                # 不存在未被访问的结点
+                # There are no new and accessible nodes.
                 else:
                     raise StopIteration
         else:
             new_hash_address = get_new_head_node_index(self.iter_head_node_index)
-            # 找到没有被访问的新结点
+            # Find a new node that has not been visited.
             if new_hash_address != -1:
-                # 更新全局的哈希地址（序号）和链表上的结点序号
+                # update the hash address and the node index.
                 self.iter_head_node_index = new_hash_address
                 self.iter_chain_node_index = 0
                 head_node = self.hashTable[new_hash_address]
@@ -308,7 +308,7 @@ class Dictionary(object):
                     value = node.values[0]
                 else:
                     value = node.values
-            # 不存在未被访问的结点
+            # There are no new and accessible nodes.
             else:
                 raise StopIteration
         return key, value
