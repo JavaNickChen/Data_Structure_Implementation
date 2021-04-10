@@ -22,13 +22,13 @@ Wang, Maoyu has implemented an immutable version of the dictionary structure, an
 #Explanation of Taken Design Decisions and Analysis   
 Design Decision for mutable version:    
 
-	'hashTable' is the key variable in class Dictionary.
-        'hashTable' is built-in list of Python, and consists of 'HeadNode' (a class).
-        'HeadNode' refer to a Singly Linked List which consists of 'ChainNode' (a class).
-        A 'ChainNode' store a key and relevant values. And the dictionary support the different values with the same key.
+	-'hashTable' is the key variable and property in class Dictionary.
+    -'hashTable' is built-in list of Python, and consists of 'HeadNode' (a class).
+    -'HeadNode' refer to a Singly Linked List which consists of 'ChainNode' (a class).
+    -A 'ChainNode' store a key and relevant values. And the dictionary supports the different values with the same key in a 'ChainNode'.
 Design Decision for immutable version:    
 
-	dh
+	-In the immutable version, we use two different lists to store the key and value respectively, and ensure the consistency of access to the key list and the valve list index in the function. A new dictionary is returned in each operation. We use  nested lists to implementate separate chaining.
 
 
 

@@ -147,7 +147,10 @@ class Dictionary(object):
                 for node in head_node.singlyLinkedList:
                     keys.append(node.key)
                     keys.sort()
-                    values.insert(keys.index(node.key), node.values)
+                    if len(node.values) == 1:
+                        values.insert(keys.index(node.key), node.values[0])
+                    else:
+                        values.insert(keys.index(node.key), node.values)
         result = []
         for index in range(0, len(keys)):
             result.append((keys[index], values[index]))
@@ -161,17 +164,22 @@ class Dictionary(object):
             self.add(key, value)
 
     # Find element by specific key.
+    # 如果value里只有一个数值的话，最好不要返回一个list，而应该是一个数值。
     def get_by_key(self, key):
+        # Validation check for key
+        if not self.validate_key(key):
+            logger.error("Fail to get element by key.")
         hash_address = self.get_hash_address(key)
-        if key == -1:
-            return "Fail. Invalid key."
         head_node = self.hashTable[hash_address]
         result = None
         for node in head_node.singlyLinkedList:
             if node.key == key:
                 result = node
                 break
-        return result.values
+        if len(result.values) == 1:
+            return result.values[0]
+        else:
+            return result.values
 
     '''
         predicate can be "even_value" or "odd_value".
@@ -205,20 +213,27 @@ class Dictionary(object):
     # Reduce process structure elements to build a return value by specific functions.
     # The object of reducing is the values of "key-value". The object is a list.
     def reduce_my(self, func, key, initial_state):
-        hash_address = self.hash_func(key)
+        hash_address = self.get_hash_address(key)
         if hash_address == -1:
             return "Fail. Invalid key."
-        iterable = []
-        head_node = self.hashTable[hash_address]
-        for node in head_node.singlyLinkedList:
-            if key == node.key:
-                iterable = node.values
+        # iterable = []
+        # head_node = self.hashTable[hash_address]
+        # for node in head_node.singlyLinkedList:
+        #     if key == node.key:
+        #         iterable = node.values
+        iterable = self.get_by_key(key)
         it = iter(iterable)
         value = initial_state
         for element in it:
-            value = func(value, element)
+            # Support the element with one-dimension list
+            if type(element) is list:
+                for e in element:
+                    value = func(value, e)
+            else:
+                # Element is a common data type that supports add/minus/multiply/divide operations.
+                # Otherwise, report ERROR by the framework.
+                value = func(value, element)
         return value
-
     '''
         An iterable object is an object that implements __iter__, which is expected to return an iterator object.
         An iterator is an object that implements __next__, which is expected to return the next element of the iterable object 
