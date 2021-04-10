@@ -35,7 +35,10 @@ class Dictionary(object):
         # length of hash table. It means that the hash address is in {0,1,2,3,4,5,6,7,8,9}
         self.length = 10
         self.hashTable = [HeadNode() for i in range(self.length)]
-        self.iter_index = -1  # used for __next__
+
+        # used for implementing __next__()
+        self.iter_head_node_index = 0
+        self.iter_chain_node_index = 0
 
     # To convert the 'key' to hash address.
     # Return: the integer between 0 to 9.
@@ -85,6 +88,9 @@ class Dictionary(object):
         # To get the the Singly Linked List used to deal with collision.
         head_node = self.hashTable[hash_address]
 
+        # To uniform form of key
+        if type(key) in [list, set]:
+            key = tuple(key)
         # Create a new node and assign values.
         node_new = ChainNode()
         node_new.key = key
@@ -164,11 +170,11 @@ class Dictionary(object):
             self.add(key, value)
 
     # Find element by specific key.
-    # 如果value里只有一个数值的话，最好不要返回一个list，而应该是一个数值。
     def get_by_key(self, key):
         # Validation check for key
         if not self.validate_key(key):
             logger.error("Fail to get element by key.")
+
         hash_address = self.get_hash_address(key)
         head_node = self.hashTable[hash_address]
         result = None
@@ -176,32 +182,31 @@ class Dictionary(object):
             if node.key == key:
                 result = node
                 break
+        # If there is only one value in the values, it is better to return a value, not a list.
         if len(result.values) == 1:
             return result.values[0]
         else:
             return result.values
 
     '''
-        predicate can be "even_value" or "odd_value".
-        The former will make the function to pick out the keys with even number of values.
-        The latter will make the function to pick out the keys with odd number of values.
+        Use the function defined by users.
+        implement the operation to the dictionary.
+        the filter() function should return the key-value and the dict object can not be modified
+        which is different from map_my() and reduce_my()
     '''
-    def filter(self, predicate):
-        keys_even = []
-        keys_odd = []
-
-        for head_node in self.hashTable:
-            for node in head_node.singlyLinkedList:
-                if len(node.values) % 2 == 0:
-                    keys_even.append(node.key)
-                else:
-                    keys_odd.append(node.key)
-        if predicate == "even_value":
-            keys_even.sort()  # It must be a separate line. Otherwise it will show a value of None.
-            return keys_even
-        elif predicate == "odd_value":
-            keys_odd.sort()
-            return keys_odd
+    def filter(self, func):
+        result = []
+        it = iter(self)
+        while True:
+            try:
+                key, value = next(it)
+                pair = (key, value)
+                tmp = func(pair)
+                if not (tmp is None):
+                    result.append(tmp)
+            except StopIteration:
+                break
+        return result
 
     # Map structure by specific function.
     def map_my(self, func):
@@ -215,12 +220,9 @@ class Dictionary(object):
     def reduce_my(self, func, key, initial_state):
         hash_address = self.get_hash_address(key)
         if hash_address == -1:
-            return "Fail. Invalid key."
-        # iterable = []
-        # head_node = self.hashTable[hash_address]
-        # for node in head_node.singlyLinkedList:
-        #     if key == node.key:
-        #         iterable = node.values
+            logger.error("Fail to reduce.")
+            return
+
         iterable = self.get_by_key(key)
         it = iter(iterable)
         value = initial_state
@@ -234,23 +236,82 @@ class Dictionary(object):
                 # Otherwise, report ERROR by the framework.
                 value = func(value, element)
         return value
-    '''
-        An iterable object is an object that implements __iter__, which is expected to return an iterator object.
-        An iterator is an object that implements __next__, which is expected to return the next element of the iterable object 
-        that returned it, and raise a StopIteration exception when no more elements are available.
-    '''
+
     def __iter__(self):
         return self
 
     def __next__(self):
-        raise StopIteration
-        # if self.iter_index == 10:
-        #     self.iter_index = 0
-        #     raise StopIteration
-        # keys_values_list = self.hashTable[self.iter_index].singlyLinkedList
-        # self.iter_index = self.iter_index + 1
-        # self.tmp = self.hashTable[self.iter_index].singlyLinkedList
-        # return keys_values_list
+        # 当head_node_index所指向的‘单链表’上的结点都访问完毕后，寻找下一个结点所在的哈希地址（序号）
+        def get_new_head_node_index(old_head_node_index):
+            # '-1' means that there is no more new node not visited.
+            new_head_index = -1
+            if old_head_node_index < self.length - 1:
+                for index in range(old_head_node_index + 1, self.length):
+                    if len(self.hashTable[index].keys) > 0:
+                        new_head_index = index
+                        break
+            return new_head_index
+
+        if self.iter_head_node_index == self.length - 1:
+            self.iter_head_node_index = 0
+            raise StopIteration
+        key = None
+        value = None
+        head_node = self.hashTable[self.iter_head_node_index]
+
+        # 如果该哈希地址上没有（key, value）则不需要遍历。head_node.count > 0 表示有元素
+        if len(head_node.keys) > 0:
+            # 该链表上有结点没有被访问
+            self.iter_chain_node_index += 1
+            if len(head_node.keys) > self.iter_chain_node_index:
+                keys_values_list = head_node.singlyLinkedList
+                node = keys_values_list[self.iter_chain_node_index]
+                key = node.key
+                if len(node.values) == 1:
+                    value = node.values[0]
+                else:
+                    value = node.values
+            # 该链表上的所有结点都被访问了
+            else:
+                # 查找下一个结点所在的哈希地址（序号）
+                new_hash_address = get_new_head_node_index(self.iter_head_node_index)
+                # 找到没有被访问的新结点
+                if new_hash_address != -1:
+                    # 更新全局的哈希地址（序号）和链表上的结点序号
+                    self.iter_head_node_index = new_hash_address
+                    self.iter_chain_node_index = 0
+                    head_node = self.hashTable[new_hash_address]
+
+                    keys_values_list = head_node.singlyLinkedList
+                    node = keys_values_list[self.iter_chain_node_index]
+                    key = node.key
+                    if len(node.values) == 1:
+                        value = node.values[0]
+                    else:
+                        value = node.values
+                # 不存在未被访问的结点
+                else:
+                    raise StopIteration
+        else:
+            new_hash_address = get_new_head_node_index(self.iter_head_node_index)
+            # 找到没有被访问的新结点
+            if new_hash_address != -1:
+                # 更新全局的哈希地址（序号）和链表上的结点序号
+                self.iter_head_node_index = new_hash_address
+                self.iter_chain_node_index = 0
+                head_node = self.hashTable[new_hash_address]
+
+                keys_values_list = head_node.singlyLinkedList
+                node = keys_values_list[self.iter_chain_node_index]
+                key = node.key
+                if len(node.values) == 1:
+                    value = node.values[0]
+                else:
+                    value = node.values
+            # 不存在未被访问的结点
+            else:
+                raise StopIteration
+        return key, value
 
     # To concatenate two dictionary objects and self store the result.
     def mconcat(self, dictionary):

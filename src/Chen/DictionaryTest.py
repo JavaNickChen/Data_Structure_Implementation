@@ -68,13 +68,23 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(dictionary.get_by_key("others"), [10, 100])
 
     def test_filter(self):
-        lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
+        # the operation object of the self-defined function should be a key-value pair.
+        # pair = (key, value)
+        def single_key_filter(pair):
+            # filter the key-value pairs that the key consists of single word.
+            if not (type(pair[0]) is tuple):
+                return pair
+            elif (type(pair[0]) is tuple) and (len(pair[0]) == 1):
+                return pair
+            else:
+                return None
+
+        lst = [((2, 4), 'Nick'), ('age', 23), ('gender', 'male')]
         dictionary = Dictionary()
         dictionary.from_list(lst)
-        result_even = dictionary.filter("even_value")
-        self.assertEqual(result_even, ["others"])
-        result_odd = dictionary.filter("odd_value")
-        self.assertEqual(result_odd, ["age", "gender", "name"])
+        tmp = sorted(dictionary.filter(single_key_filter), key=lambda element: element[0])
+        self.assertEqual(tmp, [('age', 23), ('gender', 'male')])
+
 
     def test_map_my(self):
         lst = [('score', [98, 99]), ('age', 23), ('length', 50)]
@@ -91,9 +101,18 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(result, 301)
 
     def test_iter(self):
+        lst = [('score', [98, 99]), ('age', 23), ('length', 50)]
         dictionary = Dictionary()
-        i = iter(dictionary)
-        self.assertRaises(StopIteration, lambda: next(i))
+        dictionary.from_list(lst)
+        it = iter(dictionary)
+        tmp = []
+        for element in dictionary:
+            tmp.append((element))
+        sorted_tmp = sorted(tmp, key=lambda element: element[0])
+        self.assertEqual(dictionary.to_list(), sorted_tmp)
+
+        tt = iter(Dictionary())
+        self.assertRaises(StopIteration, lambda: next(tt))
 
     def test_mconcat(self):
         list_1 = [('age', 23), ('score', 99)]
