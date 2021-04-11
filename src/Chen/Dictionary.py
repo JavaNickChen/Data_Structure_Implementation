@@ -41,9 +41,12 @@ class Dictionary(object):
         self.iter_head_node_index = 0
         self.iter_chain_node_index = -1
 
-    # To convert the 'key' to hash address.
-    # Return: the integer between 0 to 9.
     def get_hash_address(self, key):
+        """
+        To convert the 'key' to hash address.
+        :param key: an valid element.
+        :return: The hash address of the key.
+        """
         # List and set are unhashable type. We cannot call __hash__() if the type of key is list or set.
         # So transform the type into 'tuple' if needed.
         if type(key) is set:
@@ -52,17 +55,24 @@ class Dictionary(object):
             key = tuple(key)
         return key.__hash__() % self.length
 
-    # To check whether key and value are valid.
-    # If they are valid, return True; otherwise, return False.
     def validate(self, key=None, value=None):
+        """
+        To check whether key and value are valid.
+        :param key: The "key" which is needed to be validated.
+        :param value: The value needed to be validated.
+        :return: True, if key and value are valid; otherwise, False.
+        """
         if self.validate_key(key) and self.validate_value(value):
             return True
         else:
             return False
 
-    # To check whether 'value' is valid
-    # If the 'value' is valid, return True; otherwise, return False.
     def validate_value(self, value=None):
+        """
+        To check whether 'value' is valid.
+        :param value: The "value" which is needed to be validated.
+        :return: True, if value is valid; otherwise, False.
+        """
         if value is None:
             logger.error("\'None\' value is invalid.")
             return False
@@ -71,6 +81,11 @@ class Dictionary(object):
     # To check whether 'key' is valid
     # If the 'key' is valid, return True; otherwise, return False.
     def validate_key(self, key=None):
+        """
+        To check whether 'key' is valid.
+        :param key: The "key" which is needed to be validated.
+        :return:  True, if value is valid; otherwise, False.
+        """
         if type(key) is dict:
             logger.error("Dict type of key is not suitable and supported.")
             return False
@@ -84,8 +99,13 @@ class Dictionary(object):
             return False
         return True
 
-    # Add a new element by key and value.
     def add(self, key, value):
+        """
+        To add a new element by key and value.
+        :param key: The "key" in the new element.
+        :param value: The "value" in the new element.
+        :return: None
+        """
         # Validation check
         if not self.validate(key, value):
             logger.error("Fail to add new element.")
@@ -124,8 +144,12 @@ class Dictionary(object):
                         break
         logger.info("Successfully add a new element.")
 
-    # remove an element by key.
     def remove_by_key(self, key):
+        """
+        To remove an element by key.
+        :param key: The "key" of the element which is to be removed.
+        :return: None
+        """
         # Validation check
         if not self.validate_key(key):
             logger.error("Invalid key. Fail to remove element.")
@@ -144,8 +168,11 @@ class Dictionary(object):
                 break
         logger.info("Successfully remove the element.")
 
-    # Return the number of unique keys and values in the hash table.
     def size(self):
+        """
+        To get the numbers of unique keys and values in the hash table.
+        :return: a list with two numbers: the first is number of key, and the second is number of values.
+        """
         count_keys = 0  # store the number of different keys
         count_values = 0  # store the the number of different values
         for node in self.hashTable:
@@ -153,8 +180,11 @@ class Dictionary(object):
             count_keys = count_keys + len(node.keys)
         return [count_keys, count_values]
 
-    # Conversion to built-in list.
     def to_list(self):
+        """
+        To convert a self-defined dictionary object into list.
+        :return: A list with key-value pairs.
+        """
         if self.size() == [0, 0]:
             return []
         keys = []
@@ -173,15 +203,23 @@ class Dictionary(object):
             result.append((keys[index], values[index]))
         return result
 
-    # Conversion to built-in list.
     def from_list(self, lst):
+        """
+        To use a list to build a self-defined dictionary objects.
+        :param lst: A list with key-value pairs.
+        :return: None
+        """
         for element in lst:
             key = element[0]
             value = element[1]
             self.add(key, value)
 
-    # Find element by specific key.
     def get_by_key(self, key):
+        """
+        Find element by specific key.
+        :param key: the unique element used to get key-value pair.
+        :return: the "value" which is Corresponding to the "key".
+        """
         # Validation check for key
         if not self.validate_key(key):
             logger.error("Fail to get element by key.")
@@ -204,13 +242,12 @@ class Dictionary(object):
         else:
             return result.values
 
-    '''
-        Use the function defined by users.
-        implement the operation to the dictionary.
-        the filter() function should return the key-value and the dict object can not be modified
-        which is different from map_my() and reduce_my()
-    '''
     def filter(self, func):
+        """
+        To apply the function/operation defined by users to every item in the dictionary.
+        :param func: the function defined by users.
+        :return: A list that store the result of items after self-defined operation.
+        """
         result = []
         it = iter(self)
         while True:
@@ -224,9 +261,18 @@ class Dictionary(object):
                 break
         return result
 
-    # Map structure by specific function.
     def map_my(self, func):
+        """
+        To map structure by specific function.
+        :param func:  the function defined by users.
+        :return: None
+        """
         def list_func(lst):
+            """
+            To apply the function/operation defined by users to every item in the list.
+            :param lst: A list, of which items are applied by the user-defined function.
+            :return:  A list that store the result of items after user-defined operation.
+            """
             tmp = []
             for e in lst:
                 if type(e) in [list, set, tuple]:
@@ -245,9 +291,14 @@ class Dictionary(object):
             for node in head_node.singlyLinkedList:
                 node.values = list_func(node.values)
 
-    # Reduce process structure elements to build a return value by specific functions.
-    # The object of reducing is the values of "key-value". The object is a list.
     def reduce_my(self, func, key, initial_state):
+        """
+        To reduce process structure elements to build a return value by specific functions.
+        :param func: The function defined by users.
+        :param key: indicate which value-list will be the operated object.
+        :param initial_state: A number.
+        :return: A list that store the result of items after user-defined operation.
+        """
         hash_address = self.get_hash_address(key)
         if hash_address == -1:
             logger.error("Fail to reduce.")
@@ -268,9 +319,17 @@ class Dictionary(object):
         return value
 
     def __iter__(self):
+        """
+        To get a iterable object.
+        :return: self
+        """
         return self
 
     def __next__(self):
+        """
+        To get the next dictionary item.
+        :return: The next dictionary item.
+        """
         # to find next node if the nodes in the chain are all visited.
         def get_new_head_node_index(old_head_node_index):
             # '-1' means that there is no more new node not visited.
@@ -343,8 +402,12 @@ class Dictionary(object):
                 raise StopIteration
         return key, value
 
-    # To concatenate two dictionary objects and self store the result.
     def mconcat(self, dictionary):
+        """
+        To concatenate two dictionary objects and self stores the result.
+        :param dictionary: A dictionary object.
+        :return: None
+        """
         # to traverse the hash table and add the special nodes in dictionary to self.
         for index in range(self.length):
             if dictionary.hashTable[index].count != 0:
