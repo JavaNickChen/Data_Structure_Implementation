@@ -119,6 +119,7 @@ class Dictionary(object):
                     if key == head_node.singlyLinkedList[index].key:
                         if value not in head_node.singlyLinkedList[index].values:
                             head_node.singlyLinkedList[index].values.append(value)
+                            head_node.singlyLinkedList[index].values.sort()
                             head_node.count = head_node.count + 1
                         break
         logger.info("Successfully add a new element.")
@@ -237,8 +238,6 @@ class Dictionary(object):
             for node in head_node.singlyLinkedList:
                 node.values = list_func(node.values)
 
-
-
     # Reduce process structure elements to build a return value by specific functions.
     # The object of reducing is the values of "key-value". The object is a list.
     def reduce_my(self, func, key, initial_state):
@@ -347,6 +346,10 @@ class Dictionary(object):
                         self.hashTable[index].singlyLinkedList.append(node)
                         self.hashTable[index].keys.append(node.key)
                         self.hashTable[index].count = self.hashTable[index].count + 1
+                    else:
+                        for element in node.values:
+                            if element not in [self.get_by_key(node.key)]:
+                                self.add(node.key, element)
 
     def mempty(self):
         return Dictionary()
