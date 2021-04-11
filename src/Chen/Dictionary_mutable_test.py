@@ -1,5 +1,5 @@
 import unittest
-from Dictionary import Dictionary
+from Dictionary_mutable import Dictionary
 
 
 class DictionaryTest(unittest.TestCase):
