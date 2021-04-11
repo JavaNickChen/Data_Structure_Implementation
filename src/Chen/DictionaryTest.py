@@ -1,10 +1,5 @@
 import unittest
-from turtle import st
-
-from hypothesis import given
-
 from Dictionary import Dictionary
-# import Dictionary
 
 
 class DictionaryTest(unittest.TestCase):

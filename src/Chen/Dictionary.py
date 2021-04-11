@@ -78,8 +78,6 @@ class Dictionary(object):
             return False
         return True
 
-    # To check whether 'key' is valid
-    # If the 'key' is valid, return True; otherwise, return False.
     def validate_key(self, key=None):
         """
         To check whether 'key' is valid.
