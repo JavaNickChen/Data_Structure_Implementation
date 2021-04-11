@@ -138,11 +138,13 @@ class Dictionary(object):
 
         for index in range(len(head_node.singlyLinkedList)):
             if head_node.singlyLinkedList[index].key == key:
+                head_node.count -= len(head_node.singlyLinkedList[index].values)
+                head_node.keys.remove(key)
                 head_node.singlyLinkedList.pop(index)
                 break
         logger.info("Successfully remove the element.")
 
-    # Return the number of keys and values in the hash table.
+    # Return the number of unique keys and values in the hash table.
     def size(self):
         count_keys = 0  # store the number of different keys
         count_values = 0  # store the the number of different values
@@ -183,14 +185,19 @@ class Dictionary(object):
         # Validation check for key
         if not self.validate_key(key):
             logger.error("Fail to get element by key.")
+            return
 
         hash_address = self.get_hash_address(key)
         head_node = self.hashTable[hash_address]
         result = None
-        for node in head_node.singlyLinkedList:
-            if node.key == key:
-                result = node
-                break
+        if key in head_node.keys:
+            for node in head_node.singlyLinkedList:
+                if node.key == key:
+                    result = node
+                    break
+        else:
+            logger.error("Fail to get key-value. No such key.")
+            return
         # If there is only one value in the values, it is better to return a value, not a list.
         if len(result.values) == 1:
             return result.values[0]
