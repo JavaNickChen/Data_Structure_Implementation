@@ -38,7 +38,7 @@ class Dictionary(object):
 
         # used for implementing __next__()
         self.iter_head_node_index = 0
-        self.iter_chain_node_index = 0
+        self.iter_chain_node_index = -1
 
     # To convert the 'key' to hash address.
     # Return: the integer between 0 to 9.

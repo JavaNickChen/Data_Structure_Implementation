@@ -104,15 +104,14 @@ class DictionaryTest(unittest.TestCase):
         lst = [('score', [98, 99]), ('age', 23), ('length', 50)]
         dictionary = Dictionary()
         dictionary.from_list(lst)
-        it = iter(dictionary)
         tmp = []
         for element in dictionary:
             tmp.append((element))
         sorted_tmp = sorted(tmp, key=lambda element: element[0])
         self.assertEqual(dictionary.to_list(), sorted_tmp)
 
-        tt = iter(Dictionary())
-        self.assertRaises(StopIteration, lambda: next(tt))
+        it = iter(Dictionary())
+        self.assertRaises(StopIteration, lambda: next(it))
 
     def test_mconcat(self):
         list_1 = [('age', 23), ('score', 99)]
