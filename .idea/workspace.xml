@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4daf9d20-d9a5-4a9d-8826-61d173593b41" name="Default Changelist" comment="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code.">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wang/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wang/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1qDHG0O1Gy0Xksf2kIURLGP7yfF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4daf9d20-d9a5-4a9d-8826-61d173593b41" name="Default Changelist" comment="" />
+      <created>1616607140228</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616607140228</updated>
+    </task>
+    <task id="LOCAL-00001" summary="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code.">
+      <created>1616607540446</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1616607540446</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code." />
+    <option name="LAST_COMMIT_MESSAGE" value="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1616607224319">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1616607224319" />
+    <state x="462" y="132" key="RollbackChangesDialog" timestamp="1616607294823">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="462" y="132" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1616607294823" />
+    <state x="270" y="57" key="SettingsEditor" timestamp="1616607237682">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1616607237682" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1616608118208">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1616608118208" />
+  </component>
+</project>
