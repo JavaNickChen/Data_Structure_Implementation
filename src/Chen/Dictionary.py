@@ -1,5 +1,6 @@
-import logging as logger
-
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 '''
     Hash map/table based Dictionary Structure:
         'hashTable' is the key variable in class Dictionary.
@@ -73,8 +74,13 @@ class Dictionary(object):
         if type(key) is dict:
             logger.error("Dict type of key is not suitable and supported.")
             return False
-        if (key is None) or (len(key) == 0):
-            logger.error("\'None\' or empty key is invalid")
+        if key is None:
+            logger.error("\'None\' key is invalid")
+            return False
+        # Numerical key object has no len(),
+        # so explicitly specify which types are not allowed to use empty value as keys
+        if (type(key) in [str, tuple, set, list]) and (len(key) == 0):
+            logger.error("Empty key is invalid")
             return False
         return True
 
@@ -119,19 +125,21 @@ class Dictionary(object):
 
     # remove an element by key.
     def remove_by_key(self, key):
-        # validation part
-        hash_address = self.hash_func(key)
-        if hash_address == -1:
-            return "Fail. Invalid key"
+        # Validation check
+        if not self.validate_key(key):
+            logger.error("Invalid key. Fail to remove element.")
+            return
+        hash_address = self.get_hash_address(key)
         head_node = self.hashTable[hash_address]
         if key not in head_node.keys:
-            return "Fail. No such key"
+            logger.error("No such key existing.")
+            return
 
         for index in range(len(head_node.singlyLinkedList)):
             if head_node.singlyLinkedList[index].key == key:
                 head_node.singlyLinkedList.pop(index)
                 break
-        return "Successfully delete"
+        logger.info("Successfully remove the element.")
 
     # Return the number of keys and values in the hash table.
     def size(self):
@@ -210,10 +218,26 @@ class Dictionary(object):
 
     # Map structure by specific function.
     def map_my(self, func):
+        def list_func(lst):
+            tmp = []
+            for e in lst:
+                if type(e) in [list, set, tuple]:
+                    e = list(e)
+                    tmp.append(list_func(e))
+                else:
+                    if type(e) in [int, float]:
+                        tmp.append(func(e))
+                    else:
+                        logger.error("The element in 'value' should be int or float. No more data type supported.")
+                        break
+            return tmp
+
+        result = []
         for head_node in self.hashTable:
             for node in head_node.singlyLinkedList:
-                value = node.values[0]
-                node.values = [func(value)]
+                node.values = list_func(node.values)
+
+
 
     # Reduce process structure elements to build a return value by specific functions.
     # The object of reducing is the values of "key-value". The object is a list.

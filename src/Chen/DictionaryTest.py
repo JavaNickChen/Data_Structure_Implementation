@@ -10,18 +10,18 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(dictionary.to_list(), [])
         dictionary.add("score", 89)
         self.assertEqual(dictionary.get_by_key("score"), 89)
-        self.assertEqual(dictionary.to_list(), [("score", [89])])
+        self.assertEqual(dictionary.to_list(), [("score", 89)])
         dictionary.add("score", 78)
         self.assertEqual(dictionary.to_list(), [("score", [89, 78])])
         dictionary.add("gender", "male")
-        self.assertEqual(dictionary.to_list(), [("gender", ["male"]), ("score", [89, 78])])
+        self.assertEqual(dictionary.to_list(), [("gender", "male"), ("score", [89, 78])])
 
         dictionary2 = Dictionary()
         temp1 = [23, 34]
         temp2 = [23, 34]
         dictionary2.add(temp1, 'test_value_1')
         dictionary2.add(temp2, 'value2')
-        self.assertEqual(dictionary2.to_list(), [([23, 34], ['test_value_1', 'value2'])])
+        self.assertEqual(dictionary2.to_list(), [((23, 34), ['test_value_1', 'value2'])])
 
     def test_remove_by_key(self):
         dictionary = Dictionary()
@@ -31,9 +31,12 @@ class DictionaryTest(unittest.TestCase):
         dictionary.add("others", 10)
         dictionary.add("others", 100)
         dictionary.remove_by_key("gender")
-        self.assertEqual(dictionary.to_list(), [["age", "name", "others"], [[23], ["Nick"], [10, 100]]])
+        self.assertEqual(dictionary.to_list(), [("age", 23), ("name", "Nick"), ("others", [10, 100])])
         dictionary.remove_by_key("others")
-        self.assertEqual(dictionary.to_list(), [["age", "name"], [[23], ["Nick"]]])
+        self.assertEqual(dictionary.to_list(), [("age", 23), ("name", "Nick")])
+
+        # Exception test
+        dictionary.remove_by_key(23)
 
     def test_size(self):
         dictionary = Dictionary()
@@ -52,7 +55,7 @@ class DictionaryTest(unittest.TestCase):
         dictionary.add("others", 10)
         dictionary.add("others", 100)
         self.assertEqual(dictionary.to_list(),
-                         [("age", [23]), ("gender",["male"]), ("name", ["Nick"]), ("others", [10, 100])])
+                         [("age", 23), ("gender","male"), ("name", "Nick"), ("others", [10, 100])])
 
     def test_from_list(self):
         lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
@@ -85,13 +88,12 @@ class DictionaryTest(unittest.TestCase):
         tmp = sorted(dictionary.filter(single_key_filter), key=lambda element: element[0])
         self.assertEqual(tmp, [('age', 23), ('gender', 'male')])
 
-
     def test_map_my(self):
-        lst = [('score', [98, 99]), ('age', 23), ('length', 50)]
+        lst = [('score', [98, {99, 100}]), ('age', 23), ('length', 50)]
         dictionary = Dictionary()
         dictionary.from_list(lst)
         dictionary.map_my(lambda x: x + 1)
-        self.assertEqual(dictionary.to_list(), [('age', 24), ('length', 51), ('score', [99, 100])])
+        self.assertEqual(dictionary.to_list(), [('age', 24), ('length', 51), ('score', [99, [100, 101]])])
 
     def test_reduce_my(self):
         lst = [('age', [23, 22, 22]), ('score', [101, 100, 99])]
