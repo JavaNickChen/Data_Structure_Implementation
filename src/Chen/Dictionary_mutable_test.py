@@ -1,3 +1,4 @@
+import copy
 import unittest
 from operator import itemgetter
 import functools as ft
@@ -173,66 +174,57 @@ class DictionaryTest(unittest.TestCase):
         it = iter(Dictionary())
         self.assertRaises(StopIteration, lambda: next(it))
 
-    # property-based test
-    # Implement Associativity. For all a, b and c in S, the equation (ab)c = a(bc) holds.
-    # S is dictionary objects set.
-    def test_mconcat(self):
-        list_1 = [('age', 23), ('score', 99)]
-        list_2 = [('length', 100)]
-        list_3 = [("length", 200), ("color", "red")]
-
+    @given(lst=st.lists(st.tuples(st.tuples(), st.text())))
+    def test_monoid_identity(self, lst):
         dictionary_1 = Dictionary()
-        dictionary_1.from_list(list_1)
+        dictionary_1.from_list(lst)
+        dictionary_2 = copy.deepcopy(dictionary_1)
+        dictionary_3 = copy.deepcopy(dictionary_1)
+
+        # ae = a
+        dictionary_1.mconcat(dictionary_1.mempty())
+        self.assertEqual(dictionary_1, dictionary_2)
+
+        # ea = a
+        tmp = dictionary_3.mempty()
+        tmp.mconcat(dictionary_3)
+        self.assertEqual(tmp, dictionary_2)
+
+    @given(lst_1=st.lists(st.tuples(st.text(), st.text())), lst_2=st.lists(st.tuples(st.integers(), st.text())), lst_3=st.lists(st.tuples(st.sets(st.integers()), st.text())),)
+    def test_associativity(self, lst_1, lst_2, lst_3):
+        dictionary_1 = Dictionary()
+        dictionary_1.from_list(lst_1)
         dictionary_2 = Dictionary()
-        dictionary_2.from_list(list_2)
+        dictionary_2.from_list(lst_2)
         dictionary_3 = Dictionary()
-        dictionary_3.from_list(list_3)
+        dictionary_3.from_list(lst_3)
 
         # It equals to "(ab)c".
-        dictionary_2.mconcat(dictionary_3)
         dictionary_1.mconcat(dictionary_2)
+        dictionary_1.mconcat(dictionary_3)
         temp1 = dictionary_1
 
         dictionary_1 = Dictionary()
-        dictionary_1.from_list(list_1)
+        dictionary_1.from_list(lst_1)
         dictionary_2 = Dictionary()
-        dictionary_2.from_list(list_2)
+        dictionary_2.from_list(lst_2)
 
         # It equals to "a(bc)".
-        dictionary_2.mconcat(dictionary_1)
-        dictionary_3.mconcat(dictionary_2)
-        temp2 = dictionary_3
+        dictionary_2.mconcat(dictionary_3)
+        dictionary_1.mconcat(dictionary_2)
+        temp2 = dictionary_1
+        assert id(temp2) != id(temp1)
 
         # To determine if "(ab)c" and "a(bc)" are equal
         self.assertEqual(temp1.to_list(), temp2.to_list())
 
-    # property-based test
-    # Implement Identity element There exists an element e (mempty) in S such that for every element a in S,
-    # the equations ea = ae = a hold.
-    # "e" is Corresponding to the return of mempty() function in the code.
-    def test_mempty(self):
-        dictionary_1 = Dictionary()
-        dictionary_2 = Dictionary()
-        dictionary_3 = Dictionary().mempty()
-        list_1 = [('age', 23), ('score', 99)]
-        dictionary_1.from_list(list_1)
-        dictionary_2.from_list(list_1)
-        dictionary_4 = dictionary_1
 
-        # It equals to "ae".
-        dictionary_1.mconcat(dictionary_3)
-        # It equals to "ea".
-        dictionary_3.mconcat(dictionary_2)
-        # To determine if "ae" and "ea" are equal
-        self.assertEqual(dictionary_1.to_list(), dictionary_3.to_list())
-        # To determine if "ae" and "a" are equal
-        self.assertEqual(dictionary_1.to_list(), dictionary_4.to_list())
-
-    @given(lst=st.lists(st.tuples(st.integers(), st.text())))
-    def test_from_list_to_list_equality(self, lst):
+    @given(st.lists(st.tuples(st.integers(), st.text())))
+    def test_from_list_2(self, lst):
         dictionary = Dictionary()
+        dictionary.from_list(lst)
 
-        # To pick out and remove all key-value pairs with invalid 'key' or 'value'
+        # To pick out and remove all key-value pairs with invalid 'key' or 'value' and duplicate values
         indexes = []
         for index in range(len(lst)):
             if not dictionary.validate(lst[index][0], lst[index][1]):
@@ -241,14 +233,41 @@ class DictionaryTest(unittest.TestCase):
         for index in indexes:
             lst.pop(index)
         lst = list(set(lst))
+
+        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+
+    @given(lst=st.lists(st.tuples(st.integers(), st.text())))
+    def test_from_list_to_list_equality(self, lst):
+        dictionary = Dictionary()
+
+        # To pick out and remove all key-value pairs with invalid 'key' or 'value' and duplicate values
+        indexes = []
+        for index in range(len(lst)):
+            if not dictionary.validate(lst[index][0], lst[index][1]):
+                indexes.append(index)
+        indexes.reverse()
+        for index in indexes:
+            lst.pop(index)
+        lst = list(set(lst))
+
         temp = sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value))
         dictionary.from_list(lst)
         self.assertEqual(dictionary.to_list(), temp)
 
-    # property-based test
-    def test_python_len_and_dictionary_size_equality(self):
-        lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
+    @given(lst=st.lists(st.tuples(st.text(), st.text())))
+    def test_python_len_and_dictionary_size_equality(self, lst):
         dictionary = Dictionary()
+
+        # To pick out and remove all key-value pairs with invalid 'key' or 'value' and duplicate values
+        indexes = []
+        for index in range(len(lst)):
+            if not dictionary.validate(lst[index][0], lst[index][1]):
+                indexes.append(index)
+        indexes.reverse()
+        for index in indexes:
+            lst.pop(index)
+        lst = list(set(lst))
+
         dictionary.from_list(lst)
         self.assertEqual(len(dictionary.to_list()), dictionary.size()[1])
 

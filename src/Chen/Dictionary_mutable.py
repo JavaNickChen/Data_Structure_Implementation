@@ -47,6 +47,16 @@ class Dictionary(object):
         self.iter_values = None
         self.iter_key = None
 
+    def __eq__(self, other):
+        lst_1 = self.to_list()
+        lst_2 = other.to_list()
+        is_equal = True
+        for index in range(len(lst_1)):
+            if lst_1[index] != lst_2[index]:
+                is_equal = False
+                break
+        return is_equal
+
     def get_hash_address(self, key):
         """
         To convert the 'key' to hash address.
