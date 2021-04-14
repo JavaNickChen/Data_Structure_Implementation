@@ -321,7 +321,9 @@ class Dictionary(object):
         To get a iterable object.
         :return: self
         """
-        return self
+        dictionary = Dictionary()
+        dictionary.from_list(self.to_list())
+        return dictionary
 
     def __next__(self):
         """
