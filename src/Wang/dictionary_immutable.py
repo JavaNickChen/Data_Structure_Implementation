@@ -31,7 +31,6 @@ class Hashdic:
                     return False
                 if self.value[x][0] != other.value[x][0]:
                     return False
-
         return True
 
 
@@ -45,12 +44,13 @@ def cons(Hd, key, value):
     """
     new = Hashdic()
     new.size = Hd.size
+    if key is None:
+        raise Exception("key cant be NULL")
+        return -1
     k = key.__hash__() % new.code
     for x in range(0, len(Hd.key)):
         new.key[x] = Hd.key[x]
         new.value[x] = Hd.value[x]
-    if key is None:
-        raise Exception("key cant be NULL")
     if new.key[k] == -1:
         new.key[k] = [key, -1]
         new.value[k] = [value, -1]
@@ -163,7 +163,6 @@ def from_list(list):
         if len(st) < 2:
             return -1
         p = cons(p, st[0], st[1])
-
     return p
 
 
@@ -230,7 +229,6 @@ def mconcat(a, b):
         list = to_list(b)
         for st in list:
             a = cons(a, st[0], st[1])
-
         return a
 
 
@@ -286,12 +284,7 @@ def map(a, f):
                 temp = temp[1]
                 tempv = tempv[1]
                 tempv[0] = f(tempv[0])
-
     return new
-
-
-def add(a):
-    return a + 1
 
 
 def reduce(a, f, state):
@@ -343,14 +336,6 @@ def filter(a, f):
                     result.append([temp[0], tempv[0]])
     return result
 
+
 def is_even(a):
-    if a%2==0:
-        return True
-    else:
-        return False
-
-p = Hashdic()
-p = cons(p, 1, 5)
-p = cons(p, 1025, 6)
-p = cons(p, 2049, 9)
-
+    return a % 2 == 0
