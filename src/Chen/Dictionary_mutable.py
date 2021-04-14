@@ -1,4 +1,7 @@
 import logging
+from operator import itemgetter
+import functools
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 '''
@@ -40,6 +43,19 @@ class Dictionary(object):
         # used for implementing __next__()
         self.iter_head_node_index = 0
         self.iter_chain_node_index = -1
+        self.iter_value_index = -1
+        self.iter_values = None
+        self.iter_key = None
+
+    def __eq__(self, other):
+        lst_1 = self.to_list()
+        lst_2 = other.to_list()
+        is_equal = True
+        for index in range(len(lst_1)):
+            if lst_1[index] != lst_2[index]:
+                is_equal = False
+                break
+        return is_equal
 
     def get_hash_address(self, key):
         """
@@ -62,10 +78,7 @@ class Dictionary(object):
         :param value: The value needed to be validated.
         :return: True, if key and value are valid; otherwise, False.
         """
-        if self.validate_key(key) and self.validate_value(value):
-            return True
-        else:
-            return False
+        return self.validate_key(key) and self.validate_value(value)
 
     def validate_value(self, value=None):
         """
@@ -178,6 +191,30 @@ class Dictionary(object):
             count_keys = count_keys + len(node.keys)
         return [count_keys, count_values]
 
+    def compare_for_key(self, obj_1, obj_2):
+        if hash(obj_1) < hash(obj_2):
+            return -1
+        elif hash(obj_1) > hash(obj_2):
+            return 1
+        return 0
+
+    def compare_for_list_key_value(self, item_1, item_2):
+        if hash(item_1[0]) != hash(item_2[0]):
+            if hash(item_1[0]) < hash(item_2[0]):
+                return -1
+            return 1
+        else:
+            tmp_1 = item_1[1]
+            tmp_2 = item_2[1]
+            if type(item_1[1]) in [list, set]:
+                tmp_1 = tuple(item_1[1])
+            if type(item_2[1]) in [list, set]:
+                tmp_2 = tuple(item_2[1])
+            if hash(tmp_1) < hash(tmp_2):
+                return -1
+            return 1
+
+
     def to_list(self):
         """
         To convert a self-defined dictionary object into list.
@@ -191,15 +228,13 @@ class Dictionary(object):
             if head_node.count != 0:
                 for node in head_node.singlyLinkedList:
                     keys.append(node.key)
-                    keys.sort()
-                    if len(node.values) == 1:
-                        values.insert(keys.index(node.key), node.values[0])
-                    else:
-                        values.insert(keys.index(node.key), node.values)
+                    keys.sort(key=functools.cmp_to_key(self.compare_for_key))
+                    values.insert(keys.index(node.key), node.values)
         result = []
         for index in range(0, len(keys)):
-            result.append((keys[index], values[index]))
-        return result
+            for value in values[index]:
+                result.append((keys[index], value))
+        return sorted(result, key=functools.cmp_to_key(self.compare_for_list_key_value))
 
     def from_list(self, lst):
         """
@@ -321,13 +356,27 @@ class Dictionary(object):
         To get a iterable object.
         :return: self
         """
-        return self
+        dictionary = Dictionary()
+        dictionary.from_list(self.to_list())
+        return dictionary
 
     def __next__(self):
         """
         To get the next dictionary item.
         :return: The next dictionary item.
         """
+        key = None
+        value = None
+        if (self.iter_values is not None) and (self.iter_value_index < len(self.iter_values) - 1):
+            self.iter_value_index += 1
+            key = self.iter_key
+            value = self.iter_values[self.iter_value_index]
+
+            return key, value
+        else:
+            self.iter_value_index = -1
+            self.iter_values = None
+
         # to find next node if the nodes in the chain are all visited.
         def get_new_head_node_index(old_head_node_index):
             # '-1' means that there is no more new node not visited.
@@ -342,8 +391,7 @@ class Dictionary(object):
         if self.iter_head_node_index == self.length - 1:
             self.iter_head_node_index = 0
             raise StopIteration
-        key = None
-        value = None
+
         head_node = self.hashTable[self.iter_head_node_index]
 
         # head_node.count > 0 means node existing.
@@ -357,7 +405,10 @@ class Dictionary(object):
                 if len(node.values) == 1:
                     value = node.values[0]
                 else:
-                    value = node.values
+                    self.iter_values = node.values
+                    value = node.values[0]
+                    self.iter_key = node.key
+                    self.iter_value_index += 1
             # All nodes in the linked list have been accessed. The new node should be accessed.
             else:
                 # Find the hash address of the next node
@@ -375,7 +426,10 @@ class Dictionary(object):
                     if len(node.values) == 1:
                         value = node.values[0]
                     else:
-                        value = node.values
+                        self.iter_values = node.values
+                        value = node.values[0]
+                        self.iter_key = node.key
+                        self.iter_value_index = 0
                 # There are no new and accessible nodes.
                 else:
                     raise StopIteration
@@ -394,7 +448,10 @@ class Dictionary(object):
                 if len(node.values) == 1:
                     value = node.values[0]
                 else:
-                    value = node.values
+                    self.iter_values = node.values
+                    value = node.values[0]
+                    self.iter_key = node.key
+                    self.iter_value_index = 0
             # There are no new and accessible nodes.
             else:
                 raise StopIteration
