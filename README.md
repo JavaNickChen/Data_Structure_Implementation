@@ -43,8 +43,8 @@ Design Decision for immutable version:
 # Work Demonstration
 Use 'cd' command-line to go to the file in the path of the local computer, and execute one of the following command-line statements to execute the corresponding test file.  
  
-	python DictionaryTest.py  
-	python testCPO.py
+	python Dictionary_mutable_test.py  
+	python dictionary_immutable_test.py
 
 The file DictionaryTest.py is corresponding to testing the work done by Chen Jinhua;   
 The file testCPO.py is corresponding to tesing the work done by Wang Maoyu.
