@@ -1,49 +1,38 @@
 import logging
-from operator import itemgetter
 import functools
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-'''
-    Hash map/table based Dictionary Structure:
-        'hashTable' is the key variable in class Dictionary.
-        'hashTable' is built-in list of Python, and consists of 'HeadNode' (a class).
-        'HeadNode' refer to a Singly Linked List which consists of 'ChainNode' (a class).
-        A 'ChainNode' store a key and relevant values.
-        Multi-key is supported, e.g. a dictionary object like {(key1, key2):[value1], key3:[value2]}
-        Multi-value is supported, e.g. a dictionary object like {key1:[value1, [value2, value3]], key2:[value4]}
-'''
 
 
 class ChainNode:
     def __init__(self):
-        # 'key' and 'value' store the pair of (key,value)
         self.key = None
-        self.values = []  # the dictionary support the different values with the same key
+        # The dictionary support the different values with the same key.
+        self.values = []
 
 
-# HeadNodes consist of a hash table.
 class HeadNode(object):
     def __init__(self):
         # 'count' is to store the length of chain that the 'singlyLinkedList' refers to, the number of values, not keys
         self.count = 0
-        # to store existing keys in the linked list--'singlyLinkedList'
+        # To store existing keys in the 'singlyLinkedList'
         self.keys = []
-        # 'SinglyLinkedList' refers to a Singly Linked List which store the pairs of (key,value)
-        # that share the same hash address.
+        # To deal with collision.
         self.singlyLinkedList = []
 
 
 class Dictionary(object):
     def __init__(self):
-        # length of hash table. It means that the hash address is in {0,1,2,3,4,5,6,7,8,9}
+        # Length of hash table.
         self.length = 10
         self.hashTable = [HeadNode() for i in range(self.length)]
 
-        # used for implementing __next__()
+        # The following variables are used for implementing iterator.
         self.iter_head_node_index = 0
         self.iter_chain_node_index = -1
         self.iter_value_index = -1
+        # To store values and key if there are multiple values.
         self.iter_values = None
         self.iter_key = None
 
@@ -63,8 +52,7 @@ class Dictionary(object):
         :param key: an valid element.
         :return: The hash address of the key.
         """
-        # List and set are unhashable type. We cannot call __hash__() if the type of key is list or set.
-        # So transform the type into 'tuple' if needed.
+        # List and set are unhashable type. So transform the type into 'tuple' if needed.
         if type(key) is set:
             key = tuple(key)
         elif type(key) is list:
@@ -117,12 +105,11 @@ class Dictionary(object):
         :param value: The "value" in the new element.
         :return: None
         """
-        # Validation check
+        # Validation check.
         if not self.validate(key, value):
             logger.error("Fail to add new element.")
             return
         hash_address = self.get_hash_address(key)
-        # To get the the Singly Linked List used to deal with collision.
         head_node = self.hashTable[hash_address]
 
         # To uniform form of key
@@ -133,24 +120,23 @@ class Dictionary(object):
         node_new.key = key
         node_new.values.append(value)
 
-        # If there is no collision, enter.
+        # 'head_node.count == 0' means that there is no collision.
         if head_node.count == 0:
-            # use the built-in list for storing new node and modify Statistical information.
             head_node.singlyLinkedList.append(node_new)
             head_node.count = 1
             head_node.keys.append(key)
         else:
-            # If there is no same key in the head_node.keys, enter.
+            # To deal with collision.
             if key not in head_node.keys:
                 head_node.singlyLinkedList.append(node_new)
                 head_node.keys.append(key)
                 head_node.count = head_node.count + 1
             else:
+                # For the same 'key', determine whether 'value' already exists. If not, then store.
                 for index in range(len(head_node.singlyLinkedList)):
                     if key == head_node.singlyLinkedList[index].key:
                         if value not in head_node.singlyLinkedList[index].values:
                             head_node.singlyLinkedList[index].values.append(value)
-                            head_node.singlyLinkedList[index].values.sort()
                             head_node.count = head_node.count + 1
                         break
         logger.info("Successfully add a new element.")
@@ -161,7 +147,6 @@ class Dictionary(object):
         :param key: The "key" of the element which is to be removed.
         :return: None
         """
-        # Validation check
         if not self.validate_key(key):
             logger.error("Invalid key. Fail to remove element.")
             return
@@ -184,21 +169,35 @@ class Dictionary(object):
         To get the numbers of unique keys and values in the hash table.
         :return: a list with two numbers: the first is number of key, and the second is number of values.
         """
-        count_keys = 0  # store the number of different keys
-        count_values = 0  # store the the number of different values
+        count_keys = 0  # store the number of different 'key'.
+        count_values = 0  # store the the number of different 'value'.
         for node in self.hashTable:
             count_values = count_values + node.count
             count_keys = count_keys + len(node.keys)
         return [count_keys, count_values]
 
-    def compare_for_key(self, obj_1, obj_2):
-        if hash(obj_1) < hash(obj_2):
+    def compare_for_key(self, key_1, key_2):
+        """
+        To compare the two key for order.
+        :param key_1: A key.
+        :param key_2: A key.
+        :return:
+        """
+        if hash(key_1) < hash(key_2):
             return -1
-        elif hash(obj_1) > hash(obj_2):
+        elif hash(key_1) > hash(key_2):
             return 1
         return 0
 
     def compare_for_list_key_value(self, item_1, item_2):
+        """
+        To compare 'key' first for order. If they are the same, compare 'values'.
+        :param item_1: A tuple object like (key, values)
+        :param item_2: A tuple object like (key, values)
+        :return:
+        """
+        # When one element is tuple and the other is another type, such as str,
+        # using hash value can make the '<' operator function smoothly.
         if hash(item_1[0]) != hash(item_2[0]):
             if hash(item_1[0]) < hash(item_2[0]):
                 return -1
@@ -206,6 +205,7 @@ class Dictionary(object):
         else:
             tmp_1 = item_1[1]
             tmp_2 = item_2[1]
+            # 'values' could be list or set which don't have hash() function.
             if type(item_1[1]) in [list, set]:
                 tmp_1 = tuple(item_1[1])
             if type(item_2[1]) in [list, set]:
@@ -213,7 +213,6 @@ class Dictionary(object):
             if hash(tmp_1) < hash(tmp_2):
                 return -1
             return 1
-
 
     def to_list(self):
         """
@@ -253,7 +252,6 @@ class Dictionary(object):
         :param key: the unique element used to get key-value pair.
         :return: the "value" which is Corresponding to the "key".
         """
-        # Validation check for key
         if not self.validate_key(key):
             logger.error("Fail to get element by key.")
             return
@@ -269,7 +267,7 @@ class Dictionary(object):
         else:
             logger.error("Fail to get key-value. No such key.")
             return
-        # If there is only one value in the values, it is better to return a value, not a list.
+        # If there is only one value in the 'values', it is better to return a value, not a list.
         if len(result.values) == 1:
             return result.values[0]
         else:
@@ -303,7 +301,7 @@ class Dictionary(object):
         def list_func(lst):
             """
             To apply the function/operation defined by users to every item in the list.
-            :param lst: A list, of which items are applied by the user-defined function.
+            :param lst: A list object like [element1, [element2, element3], element4].
             :return:  A list that store the result of items after user-defined operation.
             """
             tmp = []
@@ -319,7 +317,6 @@ class Dictionary(object):
                         break
             return tmp
 
-        result = []
         for head_node in self.hashTable:
             for node in head_node.singlyLinkedList:
                 node.values = list_func(node.values)
@@ -332,11 +329,6 @@ class Dictionary(object):
         :param initial_state: A number.
         :return: A list that store the result of items after user-defined operation.
         """
-        hash_address = self.get_hash_address(key)
-        if hash_address == -1:
-            logger.error("Fail to reduce.")
-            return
-
         iterable = self.get_by_key(key)
         it = iter(iterable)
         value = initial_state
@@ -346,8 +338,6 @@ class Dictionary(object):
                 for e in element:
                     value = func(value, e)
             else:
-                # Element is a common data type that supports add/minus/multiply/divide operations.
-                # Otherwise, report ERROR by the framework.
                 value = func(value, element)
         return value
 
@@ -362,22 +352,22 @@ class Dictionary(object):
 
     def __next__(self):
         """
-        To get the next dictionary item.
-        :return: The next dictionary item.
+        To get the next key-value item.
+        :return: The next key-value item.
         """
         key = None
         value = None
+        # To determine if it has encountered a situation where a key has multiple values.
         if (self.iter_values is not None) and (self.iter_value_index < len(self.iter_values) - 1):
             self.iter_value_index += 1
             key = self.iter_key
             value = self.iter_values[self.iter_value_index]
-
             return key, value
         else:
             self.iter_value_index = -1
             self.iter_values = None
 
-        # to find next node if the nodes in the chain are all visited.
+        # To find next node if the nodes in the chain are all visited.
         def get_new_head_node_index(old_head_node_index):
             # '-1' means that there is no more new node not visited.
             new_head_index = -1
@@ -388,12 +378,7 @@ class Dictionary(object):
                         break
             return new_head_index
 
-        if self.iter_head_node_index == self.length - 1:
-            self.iter_head_node_index = 0
-            raise StopIteration
-
         head_node = self.hashTable[self.iter_head_node_index]
-
         # head_node.count > 0 means node existing.
         if len(head_node.keys) > 0:
             # There are nodes in the linked list is not accessed
@@ -409,9 +394,10 @@ class Dictionary(object):
                     value = node.values[0]
                     self.iter_key = node.key
                     self.iter_value_index += 1
+
             # All nodes in the linked list have been accessed. The new node should be accessed.
             else:
-                # Find the hash address of the next node
+                # Find the hash address of the next node.
                 new_hash_address = get_new_head_node_index(self.iter_head_node_index)
                 # Find a new node that has not been visited.
                 if new_hash_address != -1:
@@ -435,9 +421,7 @@ class Dictionary(object):
                     raise StopIteration
         else:
             new_hash_address = get_new_head_node_index(self.iter_head_node_index)
-            # Find a new node that has not been visited.
             if new_hash_address != -1:
-                # update the hash address and the node index.
                 self.iter_head_node_index = new_hash_address
                 self.iter_chain_node_index = 0
                 head_node = self.hashTable[new_hash_address]
@@ -452,7 +436,7 @@ class Dictionary(object):
                     value = node.values[0]
                     self.iter_key = node.key
                     self.iter_value_index = 0
-            # There are no new and accessible nodes.
+            # There is no new and accessible node.
             else:
                 raise StopIteration
         return key, value
@@ -463,7 +447,7 @@ class Dictionary(object):
         :param dictionary: A dictionary object.
         :return: None
         """
-        # to traverse the hash table and add the special nodes in dictionary to self.
+        # to traverse the 'dictionary' and add the special nodes of 'dictionary' to self.
         for index in range(self.length):
             if dictionary.hashTable[index].count != 0:
                 for node in dictionary.hashTable[index].singlyLinkedList:

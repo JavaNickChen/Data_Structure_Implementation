@@ -1,15 +1,14 @@
 import copy
 import unittest
 from operator import itemgetter
-import functools as ft
+from hypothesis import given
+import hypothesis.strategies as st
 
 from Dictionary_mutable import Dictionary
-from hypothesis import given, example
-import hypothesis.strategies as st
+import TestUtils
 
 
 class DictionaryTest(unittest.TestCase):
-    # unit test for add()
     def test_add(self):
         dictionary = Dictionary()
         lst = []
@@ -18,10 +17,10 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(dictionary.to_list(), [("score", 89)])
         dictionary.add("score", 78)
         lst.append(("score", 78))
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
         dictionary.add("gender", "male")
         lst.append(("gender", "male"))
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
         dictionary2 = Dictionary()
         temp1 = (23, 34)
@@ -29,20 +28,19 @@ class DictionaryTest(unittest.TestCase):
         dictionary2.add(temp1, 'test_value_1')
         dictionary2.add(temp2, 'value2')
         lst1 = [(temp2, 'value2'), (temp1, 'test_value_1')]
-        self.assertEqual(dictionary2.to_list(), sorted(lst1, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary2.to_list(), TestUtils.sort(lst1))
 
         # Exception test
         # 1. Add repeated key-value.
         dictionary.add("score", 78)
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
         # 2. Add invalid key
         dictionary.add({'key1': 2, "key2": 3}, "dict_key_test")
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
         # 2. Add None value
         dictionary.add("score", None)
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
-    # unit test for remove_by_key()
     def test_remove_by_key(self):
         dictionary = Dictionary()
         dictionary.add("name", "Nick")
@@ -52,10 +50,10 @@ class DictionaryTest(unittest.TestCase):
         dictionary.add("score", 100)
         dictionary.remove_by_key("gender")
         lst = [("age", 23), ("name", "Nick"), ("score", 10), ("score", 100)]
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
         dictionary.remove_by_key("score")
         lst = [("age", 23), ("name", "Nick")]
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
         # Exception test
         # 1. Remove elements that do not exist. It's going to have log output on the console.
@@ -63,7 +61,6 @@ class DictionaryTest(unittest.TestCase):
         # 2. Remove None key. It's going to have log output on the console.
         dictionary.remove_by_key(None)
 
-    # unit test for size()
     def test_size(self):
         dictionary = Dictionary()
         dictionary.add("name", "Nick")
@@ -75,7 +72,6 @@ class DictionaryTest(unittest.TestCase):
         dictionary.remove_by_key("others")
         self.assertEqual(dictionary.size(), [3, 3])
 
-    # unit test for to_list()
     def test_to_list(self):
         dictionary = Dictionary()
         self.assertEqual(dictionary.to_list(), [])
@@ -85,32 +81,27 @@ class DictionaryTest(unittest.TestCase):
         dictionary.add("others", 10)
         dictionary.add("others", 100)
         lst = [("age", 23), ("gender", "male"), ("name", "Nick"), ("others", 10), ("others", 100)]
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
-    # unit test for from_list()
     def test_from_list(self):
         lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
         lst_2 = [('name', 'Nick'), ('age', None), (None, 'male'), ('others', [10, 100, 200])]
         dictionary = Dictionary()
         dictionary.from_list(lst)
         self.assertEqual(dictionary.get_by_key('gender'), 'male')
-        self.assertEqual(dictionary.to_list(),
-                         sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
         # Existing dictionary object with some elements
         dictionary.from_list(lst_2)
         lst_3 = [('age', 23), ('gender', 'male'), ('name', 'Nick'), ('others', [10, 100]), ('others', [10, 100, 200])]
-        self.assertEqual(dictionary.to_list(),
-                         sorted(lst_3, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst_3))
         # Exception test
         # There are invalid key or value in the list.
         dictionary2 = Dictionary()
         dictionary2.from_list(lst_2)
         lst_4 = [('name', 'Nick'), ('others', [10, 100, 200])]
-        self.assertEqual(dictionary2.to_list(),
-                         sorted(lst_4, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary2.to_list(), TestUtils.sort(lst_4))
 
-    # unit test for get_by_key()
     def test_get_by_key(self):
         lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
         dictionary = Dictionary()
@@ -123,35 +114,29 @@ class DictionaryTest(unittest.TestCase):
         # 2. Get by the not existing key. It's going to have log output on the console.
         self.assertEqual(dictionary.get_by_key("color"), None)
 
-    # unit test for filter()
     def test_filter(self):
-        # the operation object of the self-defined function should be a key-value pair.
-        # pair = (key, value)
+        # pair is an object like (key, value).
         def single_key_filter(pair):
-            # filter the key-value pairs that the key consists of single word.
+            # Filter the key-value pairs that the key consists of single word.
             if not (type(pair[0]) is tuple):
                 return pair
             elif (type(pair[0]) is tuple) and (len(pair[0]) == 1):
                 return pair
-            else:
-                return None
-
         lst = [((2, 4), 'Nick'), ('age', 23), ('gender', 'male')]
         dictionary = Dictionary()
         dictionary.from_list(lst)
-        tmp = sorted(dictionary.filter(single_key_filter), key=itemgetter(0, 1))
+        tmp2 = dictionary.filter(single_key_filter)
+        tmp = sorted(tmp2, key=itemgetter(0, 1))
         self.assertEqual(tmp, [('age', 23), ('gender', 'male')])
 
-    # unit test for map_my()
     def test_map_my(self):
         lst = [('score', [98, {99, 100}]), ('age', 23), ('length', 50)]
         dictionary = Dictionary()
         dictionary.from_list(lst)
         dictionary.map_my(lambda x: x + 1)
         result = [('age', 24), ('length', 51), ('score', [99, [100, 101]])]
-        self.assertEqual(dictionary.to_list(), sorted(result, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(result))
 
-    # unit test for reduce_my()
     def test_reduce_my(self):
         lst = [('age', [23, 22, 22]), ('score', [101, 100, 99])]
         dictionary = Dictionary()
@@ -159,17 +144,27 @@ class DictionaryTest(unittest.TestCase):
         result = dictionary.reduce_my(lambda y, x: x + y, "score", 1)
         self.assertEqual(result, 301)
 
-    # unit test for iter() and next()
     def test_iter_and_next(self):
-        lst = [('score', [98, 99]), ('age', 23), ('length', 50), ('length', 60)]
+        lst = [('age', 23), ('score', 95), ('color', 'blue')]
         dictionary = Dictionary()
         dictionary.from_list(lst)
-        tmp = []
+        tmp_1 = []
         for key, value in dictionary:
-            tmp.append((key, value))
-        sorted_tmp = sorted(tmp, key=ft.cmp_to_key(dictionary.compare_for_list_key_value))
+            tmp_1.append((key, value))
+        sorted_tmp = TestUtils.sort(tmp_1)
         t = dictionary.to_list()
         self.assertEqual(t, sorted_tmp)
+
+        # Test for two iterators on one data structure working in parallel.
+        tmp_2 = []
+        tmp_3 = [('age', 'age'), ('age', 'score'), ('age', 'color'), ('score', 'age'), ('score', 'score'),
+                 ('score', 'color'), ('color', 'age'), ('color', 'score'), ('color', 'color')]
+        for iterator_1 in dictionary:
+            for iterator_2 in dictionary:
+                tmp_2.append((iterator_1[0], iterator_2[0]))
+        tmp_2 = TestUtils.sort(tmp_2)
+        tmp_3 = TestUtils.sort(tmp_3)
+        self.assertEqual(tmp_2, tmp_3)
 
         it = iter(Dictionary())
         self.assertRaises(StopIteration, lambda: next(it))
@@ -215,59 +210,27 @@ class DictionaryTest(unittest.TestCase):
         temp2 = dictionary_1
         assert id(temp2) != id(temp1)
 
-        # To determine if "(ab)c" and "a(bc)" are equal
-        self.assertEqual(temp1.to_list(), temp2.to_list())
-
+        # To determine if "(ab)c = a(bc)" holds.
+        self.assertEqual(temp1, temp2)
 
     @given(st.lists(st.tuples(st.integers(), st.text())))
     def test_from_list_2(self, lst):
         dictionary = Dictionary()
         dictionary.from_list(lst)
-
-        # To pick out and remove all key-value pairs with invalid 'key' or 'value' and duplicate values
-        indexes = []
-        for index in range(len(lst)):
-            if not dictionary.validate(lst[index][0], lst[index][1]):
-                indexes.append(index)
-        indexes.reverse()
-        for index in indexes:
-            lst.pop(index)
-        lst = list(set(lst))
-
-        self.assertEqual(dictionary.to_list(), sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value)))
+        lst = TestUtils.lst_validate(lst)
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
     @given(lst=st.lists(st.tuples(st.integers(), st.text())))
     def test_from_list_to_list_equality(self, lst):
         dictionary = Dictionary()
-
-        # To pick out and remove all key-value pairs with invalid 'key' or 'value' and duplicate values
-        indexes = []
-        for index in range(len(lst)):
-            if not dictionary.validate(lst[index][0], lst[index][1]):
-                indexes.append(index)
-        indexes.reverse()
-        for index in indexes:
-            lst.pop(index)
-        lst = list(set(lst))
-
-        temp = sorted(lst, key=ft.cmp_to_key(dictionary.compare_for_list_key_value))
+        lst = TestUtils.lst_validate(lst)
         dictionary.from_list(lst)
-        self.assertEqual(dictionary.to_list(), temp)
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
     @given(lst=st.lists(st.tuples(st.text(), st.text())))
     def test_python_len_and_dictionary_size_equality(self, lst):
         dictionary = Dictionary()
-
-        # To pick out and remove all key-value pairs with invalid 'key' or 'value' and duplicate values
-        indexes = []
-        for index in range(len(lst)):
-            if not dictionary.validate(lst[index][0], lst[index][1]):
-                indexes.append(index)
-        indexes.reverse()
-        for index in indexes:
-            lst.pop(index)
-        lst = list(set(lst))
-
+        lst = TestUtils.lst_validate(lst)
         dictionary.from_list(lst)
         self.assertEqual(len(dictionary.to_list()), dictionary.size()[1])
 

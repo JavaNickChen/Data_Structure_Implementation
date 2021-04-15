@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4daf9d20-d9a5-4a9d-8826-61d173593b41" name="Default Changelist" comment="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code.">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wang/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wang/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="40fe34d8-f799-4e91-be2d-46f4d8247946" name="Default Changelist" comment="1、Add TestUtils class to extract the common part into some functions and modify relevant test codes.&#10;2、Delete unnecessary comments and fix or add some comments." />
+    <list id="bea1a763-ffcd-4364-ae6d-93bbc23a7b5a" name="1、Add TestUtils class to extract the common part into some functions and modify relevant test codes. 2、Delete unnecessary comments and fix or add some comments." comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Chen" />
+      </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1qDHG0O1Gy0Xksf2kIURLGP7yfF" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1q3ZJ4iKxbyACfXyPUqJ9u6IqfB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,28 +50,319 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\课程\研一课程\外教课\计算机组成原理\作业1\Data_Structure_Implementation\src\Chen" />
+      <recent name="C:\Users\qingtian\Desktop\研一课程\外教课\计算机组成原理\作业\Data_Structure_Implementation\src\Chen2" />
+      <recent name="C:\Users\qingtian\Desktop\研一课程\外教课\计算机组成原理\作业\Data_Structure_Implementation\src\Chen\hash_map_based_dictionary_mutable" />
+    </key>
   </component>
+  <component name="RunManager" selected="Python.Dictionary_mutable_test">
+    <configuration name="Dictionary_mutable_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Data_Structure_Implementation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chen" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/Chen/Dictionary_mutable_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for Dictionary_mutable_test.DictionaryTest.test_filter" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Data_Structure_Implementation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chen" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Dictionary_mutable_test.DictionaryTest.test_filter&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for Dictionary_mutable_test.DictionaryTest.test_from_list_2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Data_Structure_Implementation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chen" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Dictionary_mutable_test.DictionaryTest.test_from_list_2&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for Dictionary_mutable_test.DictionaryTest.test_iter_and_next" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Data_Structure_Implementation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chen" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Dictionary_mutable_test.DictionaryTest.test_iter_and_next&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in Dictionary_mutable_test.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Data_Structure_Implementation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chen" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/src/Chen/Dictionary_mutable_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Dictionary_mutable_test" />
+      <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_iter_and_next" />
+      <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_from_list_2" />
+      <item itemvalue="Python tests.pytest in Dictionary_mutable_test.py" />
+      <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_filter" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Dictionary_mutable_test" />
+        <item itemvalue="Python tests.pytest in Dictionary_mutable_test.py" />
+        <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_filter" />
+        <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_iter_and_next" />
+        <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_from_list_2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4daf9d20-d9a5-4a9d-8826-61d173593b41" name="Default Changelist" comment="" />
-      <created>1616607140228</created>
+      <changelist id="40fe34d8-f799-4e91-be2d-46f4d8247946" name="Default Changelist" comment="" />
+      <changelist id="bea1a763-ffcd-4364-ae6d-93bbc23a7b5a" name="1、Add TestUtils class to extract the common part into some functions and modify relevant test codes. 2、Delete unnecessary comments and fix or add some comments." comment="" />
+      <created>1616310162100</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1616607140228</updated>
+      <updated>1616310162100</updated>
+      <workItem from="1616310164312" duration="8773000" />
+      <workItem from="1616498202257" duration="3717000" />
+      <workItem from="1616502157644" duration="5272000" />
+      <workItem from="1616550846779" duration="21611000" />
+      <workItem from="1616587720732" duration="2800000" />
+      <workItem from="1616590555521" duration="12271000" />
+      <workItem from="1616604472107" duration="6258000" />
+      <workItem from="1616639654055" duration="44000" />
+      <workItem from="1617882114006" duration="8572000" />
+      <workItem from="1617968391703" duration="8155000" />
+      <workItem from="1618018033014" duration="25694000" />
+      <workItem from="1618106724797" duration="22216000" />
+      <workItem from="1618156729601" duration="2755000" />
+      <workItem from="1618321093308" duration="1596000" />
+      <workItem from="1618371515831" duration="25766000" />
+      <workItem from="1618410731774" duration="1456000" />
+      <workItem from="1618455790680" duration="141000" />
+      <workItem from="1618490961934" duration="11060000" />
     </task>
-    <task id="LOCAL-00001" summary="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code.">
-      <created>1616607540446</created>
+    <task id="LOCAL-00001" summary="add the &quot;add()&quot; function(mutable version)">
+      <created>1616509315109</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1616607540446</updated>
+      <updated>1616509315109</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add the rest functions">
+      <created>1616605360606</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1616605360606</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add the test python file">
+      <created>1616605394947</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616605394947</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Modify comments">
+      <created>1616606081865</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1616606081865</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add Dictionary Structure comment">
+      <created>1616606556108</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1616606556108</updated>
+    </task>
+    <task id="LOCAL-00006" summary="modify the 'imoprt' part for command-line running">
+      <created>1616609746603</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1616609746603</updated>
+    </task>
+    <task id="LOCAL-00007" summary="edit README file">
+      <created>1616611704822</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1616611704822</updated>
+    </task>
+    <task id="LOCAL-00008" summary="modify the file structure of &quot;Chen&quot;;&#10;modify the function of &quot;to_list&quot; and &quot;from_list&quot;">
+      <created>1617897788764</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617897788765</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add support for list\tuple\set type of the key;&#10;modify the test_add();&#10;modify the logic of validation check.">
+      <created>1617978601253</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1617978601253</updated>
+    </task>
+    <task id="LOCAL-00010" summary="modify the 'get_by_key' and 'to_list' function to return a reasonable form of value.&#10;supplement the 'reduce_my' function.">
+      <created>1618022344464</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1618022344464</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix the test code to adjust the modification of the relevant function.">
+      <created>1618022493268</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1618022493268</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fix the logic of __next__() and filter() in the user perspective.&#10;Modify the relevant test function.&#10;Modify some display forms.">
+      <created>1618072780490</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1618072780490</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fix the logic of __next__() and filter() in the user perspective.&#10;Modify the relevant test function.&#10;Modify some display forms.">
+      <created>1618073274979</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1618073274979</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fix the mistake logic for __next__ function">
+      <created>1618109660056</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1618109660056</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fix the mistake logic for numerical type key in remove_by_key().&#10;Fix the the mistake logic for map_my() and support embedded list/set/tuple(seeing the test code).">
+      <created>1618117106176</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1618117106176</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add property-based test for mconcat(), which satisfies the axiom of Associativity. By the way, fix relevant logic mistake.&#10;Add some comments.">
+      <created>1618122517275</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1618122517275</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add some Exception tests and property-based tests.&#10;Add some extra unit test examples.&#10;Fix mistake logic of remove_by_key() function and get_by_key() function.&#10;All the tests passed.">
+      <created>1618131634077</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1618131634077</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fix the comments for function effect, parameters and return.">
+      <created>1618159433036</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1618159433036</updated>
+    </task>
+    <task id="LOCAL-00019" summary=" Add support for two iterators on one data structure to work in parallel correctly.">
+      <created>1618384462119</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1618384462119</updated>
+    </task>
+    <task id="LOCAL-00020" summary=" 1、If a key corresponds to more than one value, the all values are no more placed in a list with a key, but are respectively paired with the key when to_list() and __next__() function are called.&#10; 2、Due to the need for sorting, use hash value as the metric so that different type of keys or values can be compared,e.g. a str type key compared with a tuple object which contains two or more keys. &#10; 3、Modify the test for the above modification.&#10; 4、Add property-based test:test_from_list_to_list_equality().&#10; 5、Comment: The whole test codes passed test for more than 20 times.">
+      <created>1618404817479</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1618404817479</updated>
+    </task>
+    <task id="LOCAL-00021" summary="1、Added built-in __eq__() function to compare whether two custom dictionary objects are equal (in content).&#10;2、Delete function：test_mconcat()、test_mempty().&#10;3、Add property-based test function: test_python_len_and_dictionary_size_equality()、test_from_list_2()、test_associativity()、test_monoid_identity()">
+      <created>1618408553519</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1618408553519</updated>
+    </task>
+    <task id="LOCAL-00022" summary="1、Add TestUtils class to extract the common part into some functions and modify relevant test codes.&#10;2、Delete unnecessary comments and fix or add some comments.">
+      <created>1618502688891</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1618502688891</updated>
+    </task>
+    <task id="LOCAL-00023" summary="1、Add TestUtils class to extract the common part into some functions and modify relevant test codes.&#10;2、Delete unnecessary comments and fix or add some comments.">
+      <created>1618502828798</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1618502828798</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -81,28 +374,81 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code." />
-    <option name="LAST_COMMIT_MESSAGE" value="I am responsible for implementing a immutable version of Dictionary based on hash-map（collision resolution: separate chaining)&#10;CPO1.py Contains the implementation of the basic code, and testCPO.py Contains some tests of the basic code." />
+    <MESSAGE value="add the &quot;add()&quot; function(mutable version)" />
+    <MESSAGE value="add the rest functions" />
+    <MESSAGE value="add the test python file" />
+    <MESSAGE value="Modify comments" />
+    <MESSAGE value="add Dictionary Structure comment" />
+    <MESSAGE value="modify the 'imoprt' part for command-line running" />
+    <MESSAGE value="edit README file" />
+    <MESSAGE value="modify the file structure of &quot;Chen&quot;;&#10;modify the function of &quot;to_list&quot; and &quot;from_list&quot;" />
+    <MESSAGE value="add support for list\tuple\set type of the key;&#10;modify the test_add();&#10;modify the logic of validation check." />
+    <MESSAGE value="modify the 'get_by_key' and 'to_list' function to return a reasonable form of value.&#10;supplement the 'reduce_my' function." />
+    <MESSAGE value="fix the test code to adjust the modification of the relevant function." />
+    <MESSAGE value="Fix the logic of __next__() and filter() in the user perspective.&#10;Modify the relevant test function.&#10;Modify some display forms." />
+    <MESSAGE value="Fix the mistake logic for __next__ function" />
+    <MESSAGE value="Fix the mistake logic for numerical type key in remove_by_key().&#10;Fix the the mistake logic for map_my() and support embedded list/set/tuple(seeing the test code)." />
+    <MESSAGE value="Add property-based test for mconcat(), which satisfies the axiom of Associativity. By the way, fix relevant logic mistake.&#10;Add some comments." />
+    <MESSAGE value="Add some Exception tests and property-based tests.&#10;Add some extra unit test examples.&#10;Fix mistake logic of remove_by_key() function and get_by_key() function.&#10;All the tests passed." />
+    <MESSAGE value="Fix the comments for function effect, parameters and return." />
+    <MESSAGE value=" Add support for two iterators on one data structure to work in parallel correctly." />
+    <MESSAGE value=" 1、If a key corresponds to more than one value, the all values are no more placed in a list with a key, but are respectively paired with the key when to_list() and __next__() function are called.&#10; 2、Due to the need for sorting, use hash value as the metric so that different type of keys or values can be compared,e.g. a str type key compared with a tuple object which contains two or more keys. &#10; 3、Modify the test for the above modification.&#10; 4、Add property-based test:test_from_list_to_list_equality().&#10; 5、Comment: The whole test codes passed test for more than 20 times." />
+    <MESSAGE value="1、Added built-in __eq__() function to compare whether two custom dictionary objects are equal (in content).&#10;2、Delete function：test_mconcat()、test_mempty().&#10;3、Add property-based test function: test_python_len_and_dictionary_size_equality()、test_from_list_2()、test_associativity()、test_monoid_identity()" />
+    <MESSAGE value="1、Add TestUtils class to extract the common part into some functions and modify relevant test codes.&#10;2、Delete unnecessary comments and fix or add some comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="1、Add TestUtils class to extract the common part into some functions and modify relevant test codes.&#10;2、Delete unnecessary comments and fix or add some comments." />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1616607224319">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1616607224319" />
-    <state x="462" y="132" key="RollbackChangesDialog" timestamp="1616607294823">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="462" y="132" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1616607294823" />
-    <state x="270" y="57" key="SettingsEditor" timestamp="1616607237682">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1616607237682" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1616608118208">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1616608118208" />
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_map_my.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_map_my Coverage Results" MODIFIED="1618117053149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_to_list.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_to_list Coverage Results" MODIFIED="1618493890531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_remove_by_key.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_remove_by_key Coverage Results" MODIFIED="1618124624189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_python_len_and_dictionary_size_equality.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_python_len_and_dictionary_size_equality Coverage Results" MODIFIED="1618131202517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_filter.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_filter Coverage Results" MODIFIED="1616601389907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_size.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_size Coverage Results" MODIFIED="1616601371619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_remove_by_key.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_remove_by_key Coverage Results" MODIFIED="1616601365738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_reduce_my.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_reduce_my Coverage Results" MODIFIED="1616601397460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_get_by_key.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_get_by_key Coverage Results" MODIFIED="1618400406653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$myTest.coverage" NAME="myTest Coverage Results" MODIFIED="1618396653879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_iter_and_next.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_iter_and_next Coverage Results" MODIFIED="1618494990622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_to_list.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_to_list Coverage Results" MODIFIED="1617886548924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest.coverage" NAME="pytest for DictionaryTest.DictionaryTest Coverage Results" MODIFIED="1618159341163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_filter.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_filter Coverage Results" MODIFIED="1618501865151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_from_list_to_list_equality.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_from_list_to_list_equality Coverage Results" MODIFIED="1618494168093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$MyTest.coverage" NAME="MyTest Coverage Results" MODIFIED="1617885152648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_in_DictionaryTest_py.coverage" NAME="pytest in DictionaryTest.py Coverage Results" MODIFIED="1618131249272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_iter.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_iter Coverage Results" MODIFIED="1616602847778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_associativity.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_associativity Coverage Results" MODIFIED="1618492773057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_mconcat.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_mconcat Coverage Results" MODIFIED="1618122192745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_from_list.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_from_list Coverage Results" MODIFIED="1616601380793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_get_by_key.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_get_by_key Coverage Results" MODIFIED="1616601385247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_mempty.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_mempty Coverage Results" MODIFIED="1618127906071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_mempty.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_mempty Coverage Results" MODIFIED="1618400577125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_mconcat.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_mconcat Coverage Results" MODIFIED="1618400558297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_size.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_size Coverage Results" MODIFIED="1618124282602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_remove_by_key.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_remove_by_key Coverage Results" MODIFIED="1618493877619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_map_my.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_map_my Coverage Results" MODIFIED="1618400497276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_to_list.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_to_list Coverage Results" MODIFIED="1618112254208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_reduce_my.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_reduce_my Coverage Results" MODIFIED="1618112316754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_filter.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_filter Coverage Results" MODIFIED="1618112298190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_from_list_2.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_from_list_2 Coverage Results" MODIFIED="1618494172930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_map_my.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_map_my Coverage Results" MODIFIED="1616601393358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_testCPO_TestImmutableList_test_cons.coverage" NAME="pytest for testCPO.TestImmutableList.test_cons Coverage Results" MODIFIED="1617884317447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Wang" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest Coverage Results" MODIFIED="1618160012911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_add.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_add Coverage Results" MODIFIED="1618493861037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_python_len_and_dictionary_size_equality.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_python_len_and_dictionary_size_equality Coverage Results" MODIFIED="1618493352281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_size.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_size Coverage Results" MODIFIED="1618399557714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_monoid_identity.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_monoid_identity Coverage Results" MODIFIED="1618407123379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_get_by_key.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_get_by_key Coverage Results" MODIFIED="1618126627636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_in_Dictionary_mutable_test_py.coverage" NAME="pytest in Dictionary_mutable_test.py Coverage Results" MODIFIED="1618501921341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_mconcat.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_mconcat Coverage Results" MODIFIED="1616605224375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen/hash_map_based_dictionary_mutable" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_from_list_to_list_equality.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_from_list_to_list_equality Coverage Results" MODIFIED="1618120006982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_reduce_my.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_reduce_my Coverage Results" MODIFIED="1618400507380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_mempty_test_from_list_to_list_equality.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_mempty.test_from_list_to_list_equality Coverage Results" MODIFIED="1618386008948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_from_list.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_from_list Coverage Results" MODIFIED="1618493949661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_add.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_add Coverage Results" MODIFIED="1618124480932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_from_list.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_from_list Coverage Results" MODIFIED="1618126198434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_TestMutableDictionary_test_add.coverage" NAME="pytest for DictionaryTest.TestMutableDictionary.test_add Coverage Results" MODIFIED="1617886756995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_DictionaryTest_DictionaryTest_test_iter.coverage" NAME="pytest for DictionaryTest.DictionaryTest.test_iter Coverage Results" MODIFIED="1618112338328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
   </component>
 </project>
