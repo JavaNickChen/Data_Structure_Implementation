@@ -90,7 +90,10 @@ class TestImmutableList(unittest.TestCase):
         test_data2 = [[a, b], [c, d]]
         p = dictionary_immutable.Hashdic()
         p = dictionary_immutable.cons(p, a, b)
-        self.assertEqual(dictionary_immutable.from_list(test_data), -1)
+        self.assertRaises(
+            Exception,
+            dictionary_immutable.from_list,
+            (test_data))
         self.assertEqual(
             dictionary_immutable.to_list(
                 dictionary_immutable.from_list(test_data1)),
@@ -98,6 +101,52 @@ class TestImmutableList(unittest.TestCase):
         self.assertEqual(dictionary_immutable.from_list(test_data1), p)
         p = dictionary_immutable.cons(p, c, d)
         self.assertEqual(dictionary_immutable.from_list(test_data2), p)
+
+    def generate_testlist(self, list):
+        result = []
+        temp = []
+        index = 0
+        pas = True
+        if len(list) > 0:
+            for e in list:
+                index += 1
+                temp.append(e)
+                if index == 2:
+                    result.append(temp)
+                    index = 0
+                    temp = []
+        else:
+            pas = False
+        if len(temp) > 0:
+            result.append(temp)
+            pas = False
+        return result, pas
+
+    @given(a=st.lists(st.integers()))
+    def test_from_list_to_list_equality(self, a):
+        res, pas = self.generate_testlist(a)
+        if res == []:
+            self.assertEqual(
+                dictionary_immutable.to_list(
+                    dictionary_immutable.from_list(res)), [])
+        else:
+            if not pas:
+                self.assertRaises(
+                    Exception, dictionary_immutable.from_list, (res))
+            else:
+                test = True
+                while test:
+                    test = False
+                    for i in range(len(res) - 1, -1, -1):
+                        for j in range(i - 1, -1, -1):
+                            if res[j][0] == res[i][0]:
+                                res.remove(res[j])
+                                test = True
+                                break
+                        if test:
+                            break
+                self.assertEqual(set(tuple(_) for _ in dictionary_immutable.to_list(
+                    dictionary_immutable.from_list(res))), set(tuple(_) for _ in res))
 
     def test_iter(self):
         p = dictionary_immutable.Hashdic()
@@ -109,6 +158,36 @@ class TestImmutableList(unittest.TestCase):
         self.assertEqual(fun(), [2, 6])
         self.assertEqual(fun(), [3, 9])
         self.assertEqual(fun(), -1)
+        roll = 0
+        for e in p:
+            if roll == 0:
+                self.assertEqual(e, [1, 5])
+                roll += 1
+            elif roll == 1:
+                self.assertEqual(e, [2, 6])
+                roll += 1
+            else:
+                self.assertEqual(e, [3, 9])
+        roll = 0
+        roll0 = 0
+        for e in p:
+            if roll == 0:
+                self.assertEqual(e, [1, 5])
+                roll += 1
+            elif roll == 1:
+                for e1 in p:
+                    if roll0 == 0:
+                        self.assertEqual(e1, [1, 5])
+                        roll0 += 1
+                    elif roll0 == 1:
+                        self.assertEqual(e1, [2, 6])
+                        roll0 += 1
+                    else:
+                        self.assertEqual(e1, [3, 9])
+                self.assertEqual(e, [2, 6])
+                roll += 1
+            else:
+                self.assertEqual(e, [3, 9])
 
     def test_find(self):
         p = dictionary_immutable.Hashdic()

@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f3825979-74a1-4356-9ab6-cc3cb4e06d58" name="Default Changelist" comment="FIX some problems&#10;Include:&#10;1. Cleaned up inefficient functions&#10;2. use aotupep to fix the code style&#10;3. Remove all unnecessary comments and source code.&#10;4.  Add property-based tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary_immutable.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary_immutable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary_immutable_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary_immutable_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,57 +49,91 @@
       <recent name="C:\Users\ASUS\Desktop\CPO1\Data_Structure_Implementation\src\Wang" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dictionary_immutable_test.py">
-    <configuration name="dictionary_immutable" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in dictionary_immutable_test.py">
+    <configuration name="Unittests for dictionary_immutable_test.TestImmutableList" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Wang" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\ASUS\PycharmProjects\CPO1\venv\pip\Scripts\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dictionary_immutable.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;dictionary_immutable_test.TestImmutableList&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="dictionary_immutable_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for dictionary_immutable_test.TestImmutableList.test_from_list_to_list_equality" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Wang" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\ASUS\PycharmProjects\test1\venv\pip\Scripts\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\ASUS\Desktop\CPO1\Data_Structure_Implementation\src\Wang\dictionary_immutable_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;dictionary_immutable_test.TestImmutableList.test_from_list_to_list_equality&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for dictionary_immutable_test.TestImmutableList.test_iter" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Wang" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;dictionary_immutable_test.TestImmutableList.test_iter&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for dictionary_immutable_test.TestImmutableList.test_map" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Wang" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;dictionary_immutable_test.TestImmutableList.test_map&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in dictionary_immutable_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Wang" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/dictionary_immutable_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.dictionary_immutable" />
-      <item itemvalue="Python.dictionary_immutable_test.py" />
+      <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList" />
+      <item itemvalue="Python tests.Unittests in dictionary_immutable_test.py" />
+      <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_iter" />
+      <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_map" />
+      <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_from_list_to_list_equality" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dictionary_immutable_test.py" />
-        <item itemvalue="Python.dictionary_immutable" />
+        <item itemvalue="Python tests.Unittests in dictionary_immutable_test.py" />
+        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_from_list_to_list_equality" />
+        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_map" />
+        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_iter" />
+        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList" />
       </list>
     </recent_temporary>
   </component>
@@ -167,38 +203,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618289630282" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1618415696212">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1619148943090">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618415696212" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1618415696211">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619148943090" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1619148943090">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618415696211" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1618415696210">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619148943090" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1619148943090">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618415696210" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1618415696211">
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619148943090" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1619148943090">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618415696211" />
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1618401245755">
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619148943090" />
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1619148309559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618401245755" />
-    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1618401245755">
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619148309559" />
+    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1619148309559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1618401245755" />
-    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1618401245755">
+    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1619148309559" />
+    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1619148309559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1618401245755" />
-    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1618401245755">
+    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1619148309559" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1619148309559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1618401245755" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1619148309559" />
     <state x="470" y="98" key="SettingsEditor" timestamp="1618392990436">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

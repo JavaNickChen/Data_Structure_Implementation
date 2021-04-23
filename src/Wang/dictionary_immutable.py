@@ -33,6 +33,37 @@ class Hashdic:
                     return False
         return True
 
+    def __iter__(self):
+        return Hashdic_Iterator(self.key, self.value)
+
+
+class Hashdic_Iterator:
+
+    def __init__(self, key, value):
+        self.index = 0
+        self.iterator_list = []
+        for i in range(0, len(key)):
+            if key[i] == -1:
+                continue
+            temp = key[i]
+            tempv = value[i]
+            self.iterator_list.append([temp[0], tempv[0]])
+            while temp[1] != -1:
+                temp = temp[1]
+                tempv = tempv[1]
+                self.iterator_list.append([temp[0], tempv[0]])
+
+    def __next__(self):
+        try:
+            temp = self.iterator_list[self.index]
+        except IndexError:
+            raise StopIteration()
+        self.index += 1
+        return temp
+
+    def __iter__(self):
+        return self
+
 
 def cons(Hd, key, value):
     """
@@ -89,8 +120,6 @@ def remove(Hd, key):
     for x in range(0, len(Hd.key)):
         new.key[x] = Hd.key[x]
         new.value[x] = Hd.value[x]
-    if key is None:
-        raise Exception("key cant be NULL")
     if new.key[k] == -1:
         raise Exception("no such key")
     else:
@@ -158,10 +187,10 @@ def from_list(list):
     :return: dictionary contains those key-value pairs
     """
     p = Hashdic()
-
     for st in list:
-        if len(st) < 2:
-            return -1
+        if not len(st) == 2:
+            raise Exception(
+                "Element with more than 2 elements in the list are not allow")
         p = cons(p, st[0], st[1])
     return p
 
@@ -248,6 +277,8 @@ def iterator(hp):
             iterator_list.append([temp[0], tempv[0]])
             while temp[1] != -1:
                 temp = temp[1]
+                tempv = tempv[1]
+                iterator_list.append([temp[0], tempv[0]])
     na = 0
 
     def next():
