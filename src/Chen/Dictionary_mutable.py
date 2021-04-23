@@ -1,6 +1,7 @@
 import logging
 import functools
 
+from TestUtils import *
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -75,8 +76,7 @@ class Dictionary(object):
         :return: True, if value is valid; otherwise, False.
         """
         if value is None:
-            logger.error("\'None\' value is invalid.")
-            return False
+            raise Exception
         return True
 
     def validate_key(self, key=None):
@@ -86,16 +86,13 @@ class Dictionary(object):
         :return:  True, if value is valid; otherwise, False.
         """
         if type(key) is dict:
-            logger.error("Dict type of key is not suitable and supported.")
-            return False
+            raise Exception
         if key is None:
-            logger.error("\'None\' key is invalid")
-            return False
+            raise Exception
         # Numerical key object has no len(),
         # so explicitly specify which types are not allowed to use empty value as keys
         if (type(key) in [str, tuple, set, list]) and (len(key) == 0):
-            logger.error("Empty key is invalid")
-            return False
+            raise Exception
         return True
 
     def add(self, key, value):
@@ -105,10 +102,8 @@ class Dictionary(object):
         :param value: The "value" in the new element.
         :return: None
         """
-        # Validation check.
-        if not self.validate(key, value):
-            logger.error("Fail to add new element.")
-            return
+
+        self.validate(key, value)
         hash_address = self.get_hash_address(key)
         head_node = self.hashTable[hash_address]
 
@@ -147,14 +142,12 @@ class Dictionary(object):
         :param key: The "key" of the element which is to be removed.
         :return: None
         """
-        if not self.validate_key(key):
-            logger.error("Invalid key. Fail to remove element.")
-            return
+
+        self.validate_key(key)
         hash_address = self.get_hash_address(key)
         head_node = self.hashTable[hash_address]
         if key not in head_node.keys:
-            logger.error("No such key existing.")
-            return
+            raise Exception
 
         for index in range(len(head_node.singlyLinkedList)):
             if head_node.singlyLinkedList[index].key == key:
@@ -241,6 +234,9 @@ class Dictionary(object):
         :param lst: A list with key-value pairs.
         :return: None
         """
+        [key_size, value_size] = self.size()
+        if key_size > 0:
+            self.__init__()
         for element in lst:
             key = element[0]
             value = element[1]
@@ -252,10 +248,8 @@ class Dictionary(object):
         :param key: the unique element used to get key-value pair.
         :return: the "value" which is Corresponding to the "key".
         """
-        if not self.validate_key(key):
-            logger.error("Fail to get element by key.")
-            return
 
+        self.validate_key(key)
         hash_address = self.get_hash_address(key)
         head_node = self.hashTable[hash_address]
         result = None
@@ -265,8 +259,7 @@ class Dictionary(object):
                     result = node
                     break
         else:
-            logger.error("Fail to get key-value. No such key.")
-            return
+            raise Exception
         # If there is only one value in the 'values', it is better to return a value, not a list.
         if len(result.values) == 1:
             return result.values[0]
@@ -313,8 +306,7 @@ class Dictionary(object):
                     if type(e) in [int, float]:
                         tmp.append(func(e))
                     else:
-                        logger.error("The element in 'value' should be int or float. No more data type supported.")
-                        break
+                        raise Exception
             return tmp
 
         for head_node in self.hashTable:

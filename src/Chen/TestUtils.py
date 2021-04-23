@@ -13,7 +13,11 @@ def lst_validate(lst):
     dictionary = Dictionary()
     indexes = []
     for index in range(len(lst)):
-        if not dictionary.validate(lst[index][0], lst[index][1]):
+        try:
+            if type(lst[index][0]) in [set, list]:
+                lst[index][0] = tuple(lst[index][0])
+            dictionary.validate(lst[index][0], lst[index][1])
+        except Exception:
             indexes.append(index)
     indexes.reverse()
     for index in indexes:
@@ -29,4 +33,8 @@ def sort(lst):
     """
     dictionary = Dictionary()
     return sorted(lst, key=functools.cmp_to_key(dictionary.compare_for_list_key_value))
+
+
+
+
 
