@@ -1,11 +1,12 @@
 import copy
 import unittest
 from operator import itemgetter
-from hypothesis import given
-import hypothesis.strategies as st
 
-from Dictionary_mutable import Dictionary
+import hypothesis.strategies as st
+from hypothesis import given
+
 import TestUtils
+from Dictionary_mutable import Dictionary
 
 
 class DictionaryTest(unittest.TestCase):
@@ -35,11 +36,9 @@ class DictionaryTest(unittest.TestCase):
         dictionary.add("score", 78)
         self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
         # 2. Add invalid key
-        dictionary.add({'key1': 2, "key2": 3}, "dict_key_test")
-        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
+        self.assertRaises(Exception, dictionary.add, {'key1': 2, "key2": 3}, "dict_key_test")
         # 2. Add None value
-        dictionary.add("score", None)
-        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
+        self.assertRaises(Exception, dictionary.add, "score", None)
 
     def test_remove_by_key(self):
         dictionary = Dictionary()
@@ -57,9 +56,9 @@ class DictionaryTest(unittest.TestCase):
 
         # Exception test
         # 1. Remove elements that do not exist. It's going to have log output on the console.
-        dictionary.remove_by_key(23)
+        self.assertRaises(Exception, dictionary.remove_by_key, 23)
         # 2. Remove None key. It's going to have log output on the console.
-        dictionary.remove_by_key(None)
+        self.assertRaises(Exception, dictionary.remove_by_key, None)
 
     def test_size(self):
         dictionary = Dictionary()
@@ -85,7 +84,7 @@ class DictionaryTest(unittest.TestCase):
 
     def test_from_list(self):
         lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
-        lst_2 = [('name', 'Nick'), ('age', None), (None, 'male'), ('others', [10, 100, 200])]
+        lst_2 = [('name', 'Nick'), ('others', [10, 100, 200])]
         dictionary = Dictionary()
         dictionary.from_list(lst)
         self.assertEqual(dictionary.get_by_key('gender'), 'male')
@@ -93,14 +92,11 @@ class DictionaryTest(unittest.TestCase):
 
         # Existing dictionary object with some elements
         dictionary.from_list(lst_2)
-        lst_3 = [('age', 23), ('gender', 'male'), ('name', 'Nick'), ('others', [10, 100]), ('others', [10, 100, 200])]
-        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst_3))
+        self.assertEqual(dictionary.to_list(), TestUtils.sort(lst_2))
         # Exception test
         # There are invalid key or value in the list.
-        dictionary2 = Dictionary()
-        dictionary2.from_list(lst_2)
-        lst_4 = [('name', 'Nick'), ('others', [10, 100, 200])]
-        self.assertEqual(dictionary2.to_list(), TestUtils.sort(lst_4))
+        lst_3 = [('name', None), ('others', [10, 100, 200]), (None, '10')]
+        self.assertRaises(Exception, dictionary.from_list, lst_3)
 
     def test_get_by_key(self):
         lst = [('name', 'Nick'), ('age', 23), ('gender', 'male'), ('others', [10, 100])]
@@ -110,9 +106,9 @@ class DictionaryTest(unittest.TestCase):
 
         # Exception test
         # 1. Get by the invalid key. It's going to have log output on the console.
-        self.assertEqual(dictionary.get_by_key(None), None)
+        self.assertRaises(Exception, dictionary.get_by_key, None)
         # 2. Get by the not existing key. It's going to have log output on the console.
-        self.assertEqual(dictionary.get_by_key("color"), None)
+        self.assertRaises(Exception, dictionary.get_by_key, 'color')
 
     def test_filter(self):
         # pair is an object like (key, value).
@@ -171,6 +167,7 @@ class DictionaryTest(unittest.TestCase):
 
     @given(lst=st.lists(st.tuples(st.tuples(), st.text())))
     def test_monoid_identity(self, lst):
+        lst = TestUtils.lst_validate(lst)
         dictionary_1 = Dictionary()
         dictionary_1.from_list(lst)
         dictionary_2 = copy.deepcopy(dictionary_1)
@@ -187,6 +184,9 @@ class DictionaryTest(unittest.TestCase):
 
     @given(lst_1=st.lists(st.tuples(st.text(), st.text())), lst_2=st.lists(st.tuples(st.integers(), st.text())), lst_3=st.lists(st.tuples(st.sets(st.integers()), st.text())),)
     def test_associativity(self, lst_1, lst_2, lst_3):
+        lst_1 = TestUtils.lst_validate(lst_1)
+        lst_2 = TestUtils.lst_validate(lst_2)
+        lst_3 = TestUtils.lst_validate(lst_3)
         dictionary_1 = Dictionary()
         dictionary_1.from_list(lst_1)
         dictionary_2 = Dictionary()
