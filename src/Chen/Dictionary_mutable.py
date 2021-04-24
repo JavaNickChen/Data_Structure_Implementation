@@ -95,6 +95,7 @@ class Dictionary(object):
             raise Exception
         return True
 
+    # Add an element without covering.
     def add(self, key, value):
         """
         To add a new element by key and value.
@@ -136,7 +137,49 @@ class Dictionary(object):
                         break
         logger.info("Successfully add a new element.")
 
-    def remove_by_key(self, key):
+    def exist_key(self, key):
+        for head_node_index in range(self.length):
+            if key in self.hashTable[head_node_index].keys:
+                link_lst = self.hashTable[head_node_index].singlyLinkedList
+                for chain_node_index in range(len(link_lst)):
+                    if link_lst[chain_node_index].key == key:
+                        return head_node_index, chain_node_index
+        return -1, -1
+
+    # Add an value with covering
+    def set_value(self, key, value):
+        self.validate(key, value)
+        head_node_index, chain_node_index = self.exist_key(key)
+        if head_node_index == -1:
+            self.add(key, value)
+        else:
+            self.hashTable[head_node_index].singlyLinkedList[chain_node_index].values = [value]
+
+    # Delete a specific value belonging to a key
+    def remove_value(self, key, value):
+        self.validate(key, value)
+        head_node_index, chain_node_index = self.exist_key(key)
+        if head_node_index == -1:
+            raise Exception
+        if value not in self.hashTable[head_node_index].singlyLinkedList[chain_node_index].values:
+            raise Exception
+        if self.hashTable[head_node_index].count == 1:
+            self.hashTable[head_node_index] = HeadNode()
+        elif self.hashTable[head_node_index].count > 1:
+            values_number = len(self.hashTable[head_node_index].singlyLinkedList[chain_node_index].values)
+            if 1 == values_number:
+                self.hashTable[head_node_index].count -= 1
+                self.hashTable[head_node_index].singlyLinkedList.pop(chain_node_index)
+            elif values_number > 1:
+                self.hashTable[head_node_index].count -= 1
+                self.hashTable[head_node_index].singlyLinkedList[chain_node_index].values.remove(value)
+            else:
+                raise Exception
+        else:
+            raise Exception
+
+    # Delete all value belonging to a key
+    def remove_key(self, key):
         """
         To remove an element by key.
         :param key: The "key" of the element which is to be removed.
