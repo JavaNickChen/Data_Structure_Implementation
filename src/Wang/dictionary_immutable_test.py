@@ -168,26 +168,13 @@ class TestImmutableList(unittest.TestCase):
                 roll += 1
             else:
                 self.assertEqual(e, [3, 9])
-        roll = 0
-        roll0 = 0
-        for e in p:
-            if roll == 0:
-                self.assertEqual(e, [1, 5])
-                roll += 1
-            elif roll == 1:
-                for e1 in p:
-                    if roll0 == 0:
-                        self.assertEqual(e1, [1, 5])
-                        roll0 += 1
-                    elif roll0 == 1:
-                        self.assertEqual(e1, [2, 6])
-                        roll0 += 1
-                    else:
-                        self.assertEqual(e1, [3, 9])
-                self.assertEqual(e, [2, 6])
-                roll += 1
-            else:
-                self.assertEqual(e, [3, 9])
+        i1 = iter(p)
+        i2 = iter(p)
+        self.assertEqual(next(i1), [1, 5])
+        self.assertEqual(next(i1), [2, 6])
+        self.assertEqual(next(i2), [1, 5])
+        self.assertEqual(next(i2), [2, 6])
+        self.assertEqual(next(i1), [3, 9])
 
     def test_find(self):
         p = dictionary_immutable.Hashdic()
@@ -196,18 +183,18 @@ class TestImmutableList(unittest.TestCase):
         p = dictionary_immutable.cons(p, 3, 9)
         self.assertEqual(dictionary_immutable.find(p, 2), [2, 6])
         self.assertEqual(dictionary_immutable.find(p, 1), [1, 5])
-        self.assertEqual(dictionary_immutable.find(p, None), -1)
+        self.assertEqual(dictionary_immutable.find(p, None), [-1, -1])
 
     def test_map(self):
         p = dictionary_immutable.Hashdic()
         p = dictionary_immutable.cons(p, 1, 5)
-        p = dictionary_immutable.cons(p, 1025, 6)
-        p = dictionary_immutable.cons(p, 2049, 9)
+        p = dictionary_immutable.cons(p, 1026, 6)
+        p = dictionary_immutable.cons(p, 2012, 9)
 
         def add(a):
             return a + 1
         self.assertEqual(dictionary_immutable.to_list(
-            dictionary_immutable.map(p, add)), [[1, 6], [1025, 7], [2049, 10]])
+            dictionary_immutable.map(p, add)), [[1, 6], [1026, 7], [2012, 10]])
 
     def test_filter(self):
         p = dictionary_immutable.Hashdic()
@@ -233,6 +220,24 @@ class TestImmutableList(unittest.TestCase):
         def sum(a, b):
             return a + b
         self.assertEqual(dictionary_immutable.reduce(p, sum, 0), 5 + 6 + 9)
+
+    @given(a=st.integers(), b=st.integers(), c=st.integers(), d=st.integers())
+    def test_immutability_check(self, a, b, c, d):
+        p = dictionary_immutable.Hashdic()
+        p1 = dictionary_immutable.cons(p, a, b)
+        self.assertNotEqual(id(p), id(p1))
+        p2 = dictionary_immutable.remove(p1, a)
+        self.assertNotEqual(id(p1), id(p2))
+        p3 = dictionary_immutable.mempty(p2)
+        self.assertNotEqual(id(p2), id(p3))
+        p4 = dictionary_immutable.mconcat(p, p1)
+        self.assertNotEqual(id(p4), id(p))
+        self.assertNotEqual(id(p4), id(p1))
+
+        def add(a):
+            return a + 1
+        p5 = dictionary_immutable.map(p4, add)
+        self.assertNotEqual(id(p5), id(p4))
 
 
 if __name__ == '__main__':

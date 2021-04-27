@@ -1,8 +1,9 @@
 import copy
+from typing import Callable
 
 
 class Hashdic:
-    def __init__(self, Hashcode=1024):
+    def __init__(self, Hashcode: int = 2048):
         """
 
         :param Hashcode: max len of hashset
@@ -12,7 +13,7 @@ class Hashdic:
         self.value = [-1 for i in range(self.code)]
         self.size = 0
 
-    def __eq__(self, other):
+    def __eq__(self, other: any) -> bool:
         """
 
         :param other:another object
@@ -38,8 +39,7 @@ class Hashdic:
 
 
 class Hashdic_Iterator:
-
-    def __init__(self, key, value):
+    def __init__(self, key: list, value: list):
         self.index = 0
         self.iterator_list = []
         for i in range(0, len(key)):
@@ -53,7 +53,7 @@ class Hashdic_Iterator:
                 tempv = tempv[1]
                 self.iterator_list.append([temp[0], tempv[0]])
 
-    def __next__(self):
+    def __next__(self) -> list:
         try:
             temp = self.iterator_list[self.index]
         except IndexError:
@@ -65,7 +65,7 @@ class Hashdic_Iterator:
         return self
 
 
-def cons(Hd, key, value):
+def cons(Hd: Hashdic, key: int, value: int) -> Hashdic:
     """
     cons function provides a way to add element to dictionary
     :param Hd: a dictionary
@@ -77,7 +77,6 @@ def cons(Hd, key, value):
     new.size = Hd.size
     if key is None:
         raise Exception("key cant be NULL")
-        return -1
     k = key.__hash__() % new.code
     for x in range(0, len(Hd.key)):
         new.key[x] = Hd.key[x]
@@ -105,7 +104,7 @@ def cons(Hd, key, value):
     return new
 
 
-def remove(Hd, key):
+def remove(Hd: Hashdic, key: int) -> Hashdic:
     """
     remove a key from a dictionary
     :param Hd: dictionary
@@ -116,7 +115,7 @@ def remove(Hd, key):
         raise Exception("key cant be NULL")
     new = Hashdic()
     new.size = Hd.size
-    k = int(key) % new.code
+    k = key.__hash__() % new.code
     for x in range(0, len(Hd.key)):
         new.key[x] = Hd.key[x]
         new.value[x] = Hd.value[x]
@@ -145,7 +144,7 @@ def remove(Hd, key):
     return new
 
 
-def size(Hd):
+def size(Hd: Hashdic) -> int:
     """
     return the size of dictionary
     :param Hd:  dictionary
@@ -157,7 +156,7 @@ def size(Hd):
         return -1
 
 
-def to_list(h):
+def to_list(h: Hashdic) -> list:
     """
     Convert a dictionary to a list
     :param h: dictionary
@@ -180,14 +179,14 @@ def to_list(h):
     return outlist
 
 
-def from_list(list):
+def from_list(List: list) -> Hashdic:
     """
     Create a dictionary from a list
     :param list: a list contains some key-value pairs
     :return: dictionary contains those key-value pairs
     """
     p = Hashdic()
-    for st in list:
+    for st in List:
         if not len(st) == 2:
             raise Exception(
                 "Element with more than 2 elements in the list are not allow")
@@ -195,20 +194,19 @@ def from_list(list):
     return p
 
 
-def find(mp, key):
+def find(mp: Hashdic, key: int) -> list:
     """
     find a key-value pair by key
     :param mp: dictionary
     :param key:  key
-    :return: -1 if can't find the key,[key,value] if find the key
+    :return: [-1,-1] if can't find the key,[key,value] if find the key
     """
     if not key:
-        return -1
-    fin = key % mp.code
+        return [-1, -1]
+    fin = key.__hash__() % mp.code
     find = 0
     if mp.key[fin] == -1:
-        print("no such value")
-        return -1
+        return [-1, -1]
     else:
         temp = mp.key[fin]
         tempv = mp.value[fin]
@@ -223,7 +221,7 @@ def find(mp, key):
     return -1
 
 
-def mempty(h):
+def mempty(h: Hashdic) -> Hashdic:
     """
     clear a dictionary
     :param h: dictionary needed to be cleared
@@ -232,7 +230,7 @@ def mempty(h):
     return Hashdic()
 
 
-def mconcat(a, b):
+def mconcat(a: Hashdic, b: Hashdic) -> Hashdic:
     """
     Combine two dictionaries
     :param a: a dictionary
@@ -261,7 +259,7 @@ def mconcat(a, b):
         return a
 
 
-def iterator(hp):
+def iterator(hp: Hashdic) -> list:
     """
     a iterator of dictionary
     :param hp: dictionary
@@ -291,7 +289,7 @@ def iterator(hp):
     return next
 
 
-def map(a, f):
+def map(a: Hashdic, f: Callable[[int], int]) -> Hashdic:
     """
     map() will map the specified sequence according to the provided function.
     :param a: dictionary
@@ -318,7 +316,7 @@ def map(a, f):
     return new
 
 
-def reduce(a, f, state):
+def reduce(a: Hashdic, f: Callable[[int], int], state: int) -> int:
     """
     The reduce() function accumulates the elements in the parameter sequence.
     :param a: a dictionary
@@ -342,7 +340,7 @@ def reduce(a, f, state):
     return instate
 
 
-def filter(a, f):
+def filter(a: Hashdic, f: Callable[[int], bool]) -> list:
     """
     The filter() function is used to filter the sequence, filter out the elements that do not
     meet the conditions,and return a new list of elements that meet the conditions.
@@ -368,5 +366,5 @@ def filter(a, f):
     return result
 
 
-def is_even(a):
+def is_even(a: int) -> bool:
     return a % 2 == 0
