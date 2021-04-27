@@ -40,25 +40,48 @@ class DictionaryTest(unittest.TestCase):
         # 2. Add None value
         self.assertRaises(Exception, dictionary.add, "score", None)
 
-    def test_remove_by_key(self):
+    def test_set_value(self):
+        dictionary = Dictionary()
+        dictionary.add("age", 23)
+        dictionary.set_value("age", 100)
+        self.assertEqual(dictionary.get_by_key("age"), 100)
+
+        # Set a value to a key which not exist.
+        dictionary.set_value("color", "blue")
+        self.assertEqual(dictionary.to_list(), TestUtils.sort([("age", 100), ("color", "blue")]))
+
+    def test_remove_value(self):
+        dictionary = Dictionary()
+        dictionary.add("name", "Nick")
+        dictionary.add("age", 23)
+        dictionary.add("age", 34)
+        self.assertEqual(dictionary.get_by_key("age"), [23, 34])
+        dictionary.remove_value("age", 23)
+        self.assertEqual(dictionary.get_by_key("age"), 34)
+
+        # Exception test
+        # Remove elements that do not exist.
+        self.assertRaises(Exception, dictionary.remove_value, "age", 100)
+
+    def test_remove_key(self):
         dictionary = Dictionary()
         dictionary.add("name", "Nick")
         dictionary.add("age", 23)
         dictionary.add("gender", "male")
         dictionary.add("score", 10)
         dictionary.add("score", 100)
-        dictionary.remove_by_key("gender")
+        dictionary.remove_key("gender")
         lst = [("age", 23), ("name", "Nick"), ("score", 10), ("score", 100)]
         self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
-        dictionary.remove_by_key("score")
+        dictionary.remove_key("score")
         lst = [("age", 23), ("name", "Nick")]
         self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
         # Exception test
-        # 1. Remove elements that do not exist. It's going to have log output on the console.
-        self.assertRaises(Exception, dictionary.remove_by_key, 23)
-        # 2. Remove None key. It's going to have log output on the console.
-        self.assertRaises(Exception, dictionary.remove_by_key, None)
+        # 1. Remove elements that do not exist.
+        self.assertRaises(Exception, dictionary.remove_key, 23)
+        # 2. Remove None key.
+        self.assertRaises(Exception, dictionary.remove_key, None)
 
     def test_size(self):
         dictionary = Dictionary()
@@ -68,7 +91,7 @@ class DictionaryTest(unittest.TestCase):
         dictionary.add("others", 10)
         dictionary.add("others", 100)
         self.assertEqual(dictionary.size(), [4, 5])
-        dictionary.remove_by_key("others")
+        dictionary.remove_key("others")
         self.assertEqual(dictionary.size(), [3, 3])
 
     def test_to_list(self):
@@ -90,9 +113,10 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(dictionary.get_by_key('gender'), 'male')
         self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
 
-        # Existing dictionary object with some elements
+        # Existing dictionary object calls from_lst().
         dictionary.from_list(lst_2)
         self.assertEqual(dictionary.to_list(), TestUtils.sort(lst_2))
+
         # Exception test
         # There are invalid key or value in the list.
         lst_3 = [('name', None), ('others', [10, 100, 200]), (None, '10')]
@@ -105,9 +129,9 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(dictionary.get_by_key("others"), [10, 100])
 
         # Exception test
-        # 1. Get by the invalid key. It's going to have log output on the console.
+        # 1. Get by the invalid key.
         self.assertRaises(Exception, dictionary.get_by_key, None)
-        # 2. Get by the not existing key. It's going to have log output on the console.
+        # 2. Get by the not existing key.
         self.assertRaises(Exception, dictionary.get_by_key, 'color')
 
     def test_filter(self):
