@@ -1,9 +1,14 @@
 import logging
 import functools
+from typing import List, TypeVar, Tuple, Callable
 
 from TestUtils import *
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+keyType = TypeVar("keyType", int, str, float, tuple, set, list)
+valueType = TypeVar("valueType", int, str, float, bool, tuple, set, list, dict)
+self_dict = TypeVar("self-defined dictionary object")
 
 
 class ChainNode:
@@ -11,9 +16,9 @@ class ChainNode:
         """
         To initialize the variables used to store the key and value.
         """
-        self.key = None
+        self.key = None  # type: keyType
         # The dictionary support the different values with the same key.
-        self.values = []
+        self.values = []  # type: List[valueType]
 
 
 class HeadNode(object):
@@ -22,11 +27,11 @@ class HeadNode(object):
         To initialize a linked list structure used to handle hash conflicts and two variables for counting work.
         """
         # 'count' is to store the length of chain that the 'singlyLinkedList' refers to, the number of values, not keys
-        self.count = 0
+        self.count = 0  # type: int
         # To store existing keys in the 'singlyLinkedList'
-        self.keys = []
+        self.keys = []  # type: List[keyType]
         # To deal with collision.
-        self.singlyLinkedList = []
+        self.singlyLinkedList = []  # type: List[ChainNode]
 
 
 class Dictionary(object):
@@ -35,18 +40,18 @@ class Dictionary(object):
         To initialize the custom dictionary object.
         """
         # Length of hash table.
-        self.length = 10
-        self.hashTable = [HeadNode() for i in range(self.length)]
+        self.length = 10  # type: int
+        self.hashTable = [HeadNode() for i in range(self.length)]  # type: List[HeadNode]
 
         # The following variables are used for implementing iterator.
-        self.iter_head_node_index = 0
-        self.iter_chain_node_index = -1
-        self.iter_value_index = -1
+        self.iter_head_node_index = 0  # type: int
+        self.iter_chain_node_index = -1  # type: int
+        self.iter_value_index = -1  # type: int
         # To store values and key if there are multiple values.
-        self.iter_values = None
-        self.iter_key = None
+        self.iter_values = None  # type:List[valueType]
+        self.iter_key = None  # type: keyType
 
-    def __eq__(self, other):
+    def __eq__(self, other: self_dict) -> bool:
         """
         To determine whether two custom dictionary objects contain the same keys and related values.
         :param other: Another custom dictionary object to compare
@@ -62,7 +67,7 @@ class Dictionary(object):
                 break
         return is_equal
 
-    def get_hash_address(self, key):
+    def get_hash_address(self, key: keyType) -> int:
         """
         To convert the 'key' to hash address.
         :param key: an valid element.
@@ -75,7 +80,7 @@ class Dictionary(object):
             key = tuple(key)
         return key.__hash__() % self.length
 
-    def validate(self, key=None, value=None):
+    def validate(self, key: keyType, value: valueType) -> bool:
         """
         To check whether key and value are valid.
         :param key: The "key" which is needed to be validated.
@@ -84,7 +89,7 @@ class Dictionary(object):
         """
         return self.validate_key(key) and self.validate_value(value)
 
-    def validate_value(self, value=None):
+    def validate_value(self, value: valueType) -> bool:
         """
         To check whether 'value' is valid.
         :param value: The "value" which is needed to be validated.
@@ -94,13 +99,13 @@ class Dictionary(object):
             raise Exception
         return True
 
-    def validate_key(self, key=None):
+    def validate_key(self, key: keyType) -> bool:
         """
         To check whether 'key' is valid.
         :param key: The "key" which is needed to be validated.
         :return:  True, if value is valid; otherwise, False.
         """
-        if type(key) is dict:
+        if type(key) in [dict, bool]:
             raise Exception
         if key is None:
             raise Exception
@@ -110,7 +115,7 @@ class Dictionary(object):
             raise Exception
         return True
 
-    def add(self, key, value):
+    def add(self, key: keyType, value: valueType) -> None:
         """
         To add a new element by key and value without covering.
         :param key: The "key" in the new element.
@@ -151,7 +156,7 @@ class Dictionary(object):
                         break
         logger.info("Successfully add a new element.")
 
-    def exist_key(self, key):
+    def exist_key(self, key: keyType) -> Tuple[int, int]:
         """
         To check whether the 'key' exist in the dictionary object.
         :param key: A key that needs to be checked for existence.
@@ -165,7 +170,7 @@ class Dictionary(object):
                         return head_node_index, chain_node_index
         return -1, -1
 
-    def set_value(self, key, new_value):
+    def set_value(self, key: keyType, new_value: valueType) -> None:
         """
         To add a new value with covering to a specific key.
         :param key: A 'key' which the 'new_value' belongs to.
@@ -180,7 +185,7 @@ class Dictionary(object):
         else:
             self.hashTable[head_node_index].singlyLinkedList[chain_node_index].values = [new_value]
 
-    def remove_value(self, key, value):
+    def remove_value(self, key: keyType, value: valueType) -> None:
         """
         To delete a specific value (not values).
         :param key: the 'key' which the 'value' belonging to.
@@ -209,7 +214,7 @@ class Dictionary(object):
             raise Exception
 
     # Delete all value belonging to a key
-    def remove_key(self, key):
+    def remove_key(self, key: keyType) -> None:
         """
         To remove an element by key.
         :param key: The "key" of the element which is to be removed.
@@ -229,7 +234,7 @@ class Dictionary(object):
                 break
         logger.info("Successfully remove the element.")
 
-    def size(self):
+    def size(self) -> Tuple[int, int]:
         """
         To get the numbers of unique keys and values in the hash table.
         :return: a list with two numbers: the first is number of key, and the second is number of values.
@@ -239,9 +244,9 @@ class Dictionary(object):
         for node in self.hashTable:
             count_values = count_values + node.count
             count_keys = count_keys + len(node.keys)
-        return [count_keys, count_values]
+        return count_keys, count_values
 
-    def compare_for_key(self, key_1, key_2):
+    def compare_for_key(self, key_1: keyType, key_2: keyType) -> int:
         """
         To compare the two keys for order.
         :param key_1: A key.
@@ -253,7 +258,7 @@ class Dictionary(object):
             return -1
         return 1
 
-    def compare_for_list_key_value(self, item_1, item_2):
+    def compare_for_list_key_value(self, item_1: Tuple[keyType, valueType], item_2: Tuple[keyType, valueType]) -> int:
         """
         To compare 'key' first for order. If they are the same, compare 'values'.
         :param item_1: A tuple object like (key, values)
@@ -279,12 +284,13 @@ class Dictionary(object):
                 return -1
             return 1
 
-    def to_list(self):
+    def to_list(self) -> List[Tuple[keyType, valueType]]:
         """
         To convert a self-defined dictionary object into list.
         :return: A list with key-value pairs.
         """
-        if self.size() == [0, 0]:
+        key_count, value_count = self.size()
+        if (key_count == 0) and (value_count == 0):
             return []
         keys = []
         values = []
@@ -300,13 +306,13 @@ class Dictionary(object):
                 result.append((keys[index], value))
         return sorted(result, key=functools.cmp_to_key(self.compare_for_list_key_value))
 
-    def from_list(self, lst):
+    def from_list(self, lst: List[Tuple[keyType, valueType]]) -> None:
         """
         To use a list to build a self-defined dictionary objects.
         :param lst: A list with key-value pairs.
         :return: None
         """
-        [key_size, value_size] = self.size()
+        key_size, value_size = self.size()
         if key_size > 0:
             self.__init__()
         for element in lst:
@@ -314,7 +320,7 @@ class Dictionary(object):
             value = element[1]
             self.add(key, value)
 
-    def get_by_key(self, key):
+    def get_by_key(self, key: keyType) -> valueType:
         """
         Find element by specific key.
         :param key: the unique element used to get key-value pair.
@@ -338,7 +344,7 @@ class Dictionary(object):
         else:
             return result.values
 
-    def filter(self, func):
+    def filter(self, func: Callable[[Tuple[keyType, valueType]], Tuple[keyType, valueType]]) -> List[Tuple[keyType, valueType]]:
         """
         To apply the function/operation defined by users to every item in the dictionary.
         :param func: the function defined by users.
@@ -357,13 +363,13 @@ class Dictionary(object):
                 break
         return result
 
-    def map_my(self, func):
+    def map_my(self, func: Callable[[int], int]) -> None:
         """
         To map structure by specific function.
         :param func:  the function defined by users.
         :return: None
         """
-        def list_func(lst):
+        def list_func(lst: List[valueType]) -> List[valueType]:
             """
             To apply the function/operation defined by users to every item in the list.
             :param lst: A list object like [element1, [element2, element3], element4].
@@ -385,7 +391,7 @@ class Dictionary(object):
             for node in head_node.singlyLinkedList:
                 node.values = list_func(node.values)
 
-    def reduce_my(self, func, key, initial_state):
+    def reduce_my(self, func: Callable[[int, int], int], key: keyType, initial_state: int) -> int:
         """
         To reduce process structure elements to build a return value by specific functions.
         :param func: The function defined by users.
@@ -405,7 +411,7 @@ class Dictionary(object):
                 value = func(value, element)
         return value
 
-    def __iter__(self):
+    def __iter__(self) -> self_dict:
         """
         To get a iterable object.
         :return: A custom dictionary object that contains the same keys and corresponding values.
@@ -414,7 +420,7 @@ class Dictionary(object):
         dictionary.from_list(self.to_list())
         return dictionary
 
-    def __next__(self):
+    def __next__(self) -> Tuple[keyType, valueType]:
         """
         To get the next key-value item.
         :return: The next key-value item.
@@ -432,7 +438,7 @@ class Dictionary(object):
             self.iter_values = None
 
         # To find next node if the nodes in the chain are all visited.
-        def get_new_head_node_index(old_head_node_index):
+        def get_new_head_node_index(old_head_node_index: int) -> int:
             # '-1' means that there is no more new node not visited.
             new_head_index = -1
             if old_head_node_index < self.length - 1:
@@ -505,7 +511,7 @@ class Dictionary(object):
                 raise StopIteration
         return key, value
 
-    def mconcat(self, dictionary):
+    def mconcat(self, dictionary: self_dict) -> None:
         """
         To concatenate two dictionary objects and self stores the result.
         :param dictionary: A dictionary object.
@@ -524,7 +530,7 @@ class Dictionary(object):
                             if element not in [self.get_by_key(node.key)]:
                                 self.add(node.key, element)
 
-    def mempty(self):
+    def mempty(self) -> self_dict:
         """
         To return an mempty element in the dictionary object set.
         :return: A custom dictionary object.

@@ -1,12 +1,17 @@
 from Dictionary_mutable import Dictionary
 import functools
+from typing import List, Tuple, TypeVar
 
+keyType = TypeVar("keyType", int, str, float, tuple, set, list)
+valueType = TypeVar("valueType", int, str, float, bool, tuple, set, list, dict)
 
 # To process the test data as Dictionary() object does.
-def lst_validate(lst):
+
+
+def lst_validate(lst: List[Tuple[keyType, valueType]]) -> List[Tuple[keyType, valueType]]:
     """
-        To pick out invalid 'key' or 'value',and then remove them.
-        And also, remove the duplicate key-value and remain only one.
+    To pick out invalid 'key' or 'value',and then remove them.
+    And also, remove the duplicate key-value and remain only one.
     :param lst: a list object such as [(key_1, value_1), ..., (key_n, value_n)]
     :return: lst itself.
     """
@@ -25,9 +30,9 @@ def lst_validate(lst):
     return list(set(lst))
 
 
-def sort(lst):
+def sort(lst: List[Tuple[keyType, valueType]]) -> List[Tuple[keyType, valueType]]:
     """
-        To sort the list object.
+    To sort the list object.
     :param lst: a list object such as [(key_1, value_1), ..., (key_n, value_n)]
     :return: a sorted list object.
     """
