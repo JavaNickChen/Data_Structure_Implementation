@@ -8,6 +8,9 @@ logger = logging.getLogger(__name__)
 
 class ChainNode:
     def __init__(self):
+        """
+        To initialize the variables used to store the key and value.
+        """
         self.key = None
         # The dictionary support the different values with the same key.
         self.values = []
@@ -15,6 +18,9 @@ class ChainNode:
 
 class HeadNode(object):
     def __init__(self):
+        """
+        To initialize a linked list structure used to handle hash conflicts and two variables for counting work.
+        """
         # 'count' is to store the length of chain that the 'singlyLinkedList' refers to, the number of values, not keys
         self.count = 0
         # To store existing keys in the 'singlyLinkedList'
@@ -25,6 +31,9 @@ class HeadNode(object):
 
 class Dictionary(object):
     def __init__(self):
+        """
+        To initialize the custom dictionary object.
+        """
         # Length of hash table.
         self.length = 10
         self.hashTable = [HeadNode() for i in range(self.length)]
@@ -38,6 +47,12 @@ class Dictionary(object):
         self.iter_key = None
 
     def __eq__(self, other):
+        """
+        To determine whether two custom dictionary objects contain the same keys and related values.
+        :param other: Another custom dictionary object to compare
+        :return: If the two objects' keys and corresponding values are exactly the same, return True;
+        Otherwise, return False.
+        """
         lst_1 = self.to_list()
         lst_2 = other.to_list()
         is_equal = True
@@ -95,10 +110,9 @@ class Dictionary(object):
             raise Exception
         return True
 
-    # Add an element without covering.
     def add(self, key, value):
         """
-        To add a new element by key and value.
+        To add a new element by key and value without covering.
         :param key: The "key" in the new element.
         :param value: The "value" in the new element.
         :return: None
@@ -138,6 +152,11 @@ class Dictionary(object):
         logger.info("Successfully add a new element.")
 
     def exist_key(self, key):
+        """
+        To check whether the 'key' exist in the dictionary object.
+        :param key: A key that needs to be checked for existence.
+        :return: If exist, return the location
+        """
         for head_node_index in range(self.length):
             if key in self.hashTable[head_node_index].keys:
                 link_lst = self.hashTable[head_node_index].singlyLinkedList
@@ -146,17 +165,28 @@ class Dictionary(object):
                         return head_node_index, chain_node_index
         return -1, -1
 
-    # Add an value with covering
-    def set_value(self, key, value):
-        self.validate(key, value)
+    def set_value(self, key, new_value):
+        """
+        To add a new value with covering to a specific key.
+        :param key: A 'key' which the 'new_value' belongs to.
+        :param new_value: A new value .
+        :return: None
+        """
+        self.validate(key, new_value)
         head_node_index, chain_node_index = self.exist_key(key)
+        # "head_node_index is equal to -1" means that 'key' doesn't exist in dictionary object.
         if head_node_index == -1:
-            self.add(key, value)
+            self.add(key, new_value)
         else:
-            self.hashTable[head_node_index].singlyLinkedList[chain_node_index].values = [value]
+            self.hashTable[head_node_index].singlyLinkedList[chain_node_index].values = [new_value]
 
-    # Delete a specific value belonging to a key
     def remove_value(self, key, value):
+        """
+        To delete a specific value (not values).
+        :param key: the 'key' which the 'value' belonging to.
+        :param value: The value which is needed to be deleted.
+        :return:
+        """
         self.validate(key, value)
         head_node_index, chain_node_index = self.exist_key(key)
         if head_node_index == -1:
@@ -185,7 +215,6 @@ class Dictionary(object):
         :param key: The "key" of the element which is to be removed.
         :return: None
         """
-
         self.validate_key(key)
         hash_address = self.get_hash_address(key)
         head_node = self.hashTable[hash_address]
@@ -214,26 +243,26 @@ class Dictionary(object):
 
     def compare_for_key(self, key_1, key_2):
         """
-        To compare the two key for order.
+        To compare the two keys for order.
         :param key_1: A key.
         :param key_2: A key.
-        :return:
+        :return: Return -1, If the hash value of key_1 is less than key_2;
+                Return 1, if the hash value of key_1 is not less than key_2's.
         """
         if hash(key_1) < hash(key_2):
             return -1
-        elif hash(key_1) > hash(key_2):
-            return 1
-        return 0
+        return 1
 
     def compare_for_list_key_value(self, item_1, item_2):
         """
         To compare 'key' first for order. If they are the same, compare 'values'.
         :param item_1: A tuple object like (key, values)
         :param item_2: A tuple object like (key, values)
-        :return:
+        :return: Return -1, If the hash value of item_1 is less than item_2;
+                 Return 1, if the hash value of item_1 is not less than item_2's.
         """
         # When one element is tuple and the other is another type, such as str,
-        # using hash value can make the '<' operator function smoothly.
+        # using hash value can make the '<' operator function function normally.
         if hash(item_1[0]) != hash(item_2[0]):
             if hash(item_1[0]) < hash(item_2[0]):
                 return -1
@@ -379,7 +408,7 @@ class Dictionary(object):
     def __iter__(self):
         """
         To get a iterable object.
-        :return: self
+        :return: A custom dictionary object that contains the same keys and corresponding values.
         """
         dictionary = Dictionary()
         dictionary.from_list(self.to_list())
@@ -496,5 +525,9 @@ class Dictionary(object):
                                 self.add(node.key, element)
 
     def mempty(self):
+        """
+        To return an mempty element in the dictionary object set.
+        :return: A custom dictionary object.
+        """
         return Dictionary()
 
