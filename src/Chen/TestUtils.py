@@ -5,7 +5,7 @@ from typing import List, Tuple, TypeVar
 keyType = TypeVar("keyType", int, str, float, tuple, set, list)
 valueType = TypeVar("valueType", int, str, float, bool, tuple, set, list, dict)
 
-# To process the test data as Dictionary() object does.
+# Define the following functions for processing the test data as Dictionary() object does.
 
 
 def lst_validate(lst: List[Tuple[keyType, valueType]]) -> List[Tuple[keyType, valueType]]:
@@ -13,7 +13,7 @@ def lst_validate(lst: List[Tuple[keyType, valueType]]) -> List[Tuple[keyType, va
     To pick out invalid 'key' or 'value',and then remove them.
     And also, remove the duplicate key-value and remain only one.
     :param lst: a list object such as [(key_1, value_1), ..., (key_n, value_n)]
-    :return: lst itself.
+    :return: A legal list.
     """
     dictionary = Dictionary()
     indexes = []
