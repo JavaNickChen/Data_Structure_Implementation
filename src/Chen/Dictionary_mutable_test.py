@@ -90,9 +90,9 @@ class DictionaryTest(unittest.TestCase):
         dictionary.add("gender", "male")
         dictionary.add("others", 10)
         dictionary.add("others", 100)
-        self.assertEqual(dictionary.size(), [4, 5])
+        self.assertEqual(dictionary.size(), (4, 5))
         dictionary.remove_key("others")
-        self.assertEqual(dictionary.size(), [3, 3])
+        self.assertEqual(dictionary.size(), (3, 3))
 
     def test_to_list(self):
         dictionary = Dictionary()
