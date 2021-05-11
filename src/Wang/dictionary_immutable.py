@@ -1,5 +1,6 @@
 import copy
-from typing import Callable
+from typing import Callable, TypeVar, Any
+import typing
 
 
 class Hashdic:
@@ -13,7 +14,7 @@ class Hashdic:
         self.value = [-1 for i in range(self.code)]
         self.size = 0
 
-    def __eq__(self, other: any) -> bool:
+    def __eq__(self, other: Any) -> bool:
         """
 
         :param other:another object
@@ -217,8 +218,8 @@ def find(mp: Hashdic, key: int) -> list:
             tempv = tempv[1]
             if temp[0] == key:
                 return [temp[0], tempv[0]]
-    print("no such value")
-    return -1
+    raise Exception("key not found")
+    return [-1, -1]
 
 
 def mempty(h: Hashdic) -> Hashdic:
@@ -259,7 +260,7 @@ def mconcat(a: Hashdic, b: Hashdic) -> Hashdic:
         return a
 
 
-def iterator(hp: Hashdic) -> list:
+def iterator(hp: Hashdic) -> Callable[[], Any]:
     """
     a iterator of dictionary
     :param hp: dictionary

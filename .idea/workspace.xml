@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c16d3ebb-4bb7-4fff-aeec-d6854c014651" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chen/Dictionary_mutable_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chen/Dictionary_mutable_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wang/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wang/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wang/dictionary_immutable.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wang/dictionary_immutable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wang/dictionary_immutable_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wang/dictionary_immutable_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +52,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Basic-Model-of-Computational" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python tests.pytest in Dictionary_mutable_test.py">
-    <configuration name="im_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in dictionary_immutable_test.py">
+    <configuration name="dictionary_immutable" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Data_Structure_Implementation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -64,8 +67,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/Wang/im_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/Wang/dictionary_immutable.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -74,21 +76,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for Dictionary_mutable_test.DictionaryTest.test_remove_by_value" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for dictionary_immutable_test.TestImmutableList.test_find" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Data_Structure_Implementation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chen" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Wang" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Dictionary_mutable_test.DictionaryTest.test_remove_by_value&quot;" />
+      <option name="_new_target" value="&quot;dictionary_immutable_test.TestImmutableList.test_find&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in dictionary_immutable_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Data_Structure_Implementation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Wang" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/src/Wang/dictionary_immutable_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for Dictionary_mutable_test.DictionaryTest.test_remove_key" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -122,23 +135,6 @@
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;Dictionary_mutable_test.DictionaryTest.test_remove_value&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for Dictionary_mutable_test.DictionaryTest.test_set_value" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Data_Structure_Implementation" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Chen" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Dictionary_mutable_test.DictionaryTest.test_set_value&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -177,25 +173,28 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.im_test" />
       <item itemvalue="Python tests.pytest for self" />
       <item itemvalue="Python tests.pytest in Dictionary_mutable_test.py" />
-      <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_set_value" />
-      <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_remove_by_value" />
       <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_remove_value" />
       <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_remove_key" />
+      <item itemvalue="Python.dictionary_immutable" />
+      <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_find" />
+      <item itemvalue="Python tests.Unittests in dictionary_immutable_test.py" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in dictionary_immutable_test.py" />
+        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_find" />
+        <item itemvalue="Python.dictionary_immutable" />
         <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_remove_key" />
         <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_remove_value" />
-        <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_set_value" />
-        <item itemvalue="Python tests.pytest for Dictionary_mutable_test.DictionaryTest.test_remove_by_value" />
-        <item itemvalue="Python.im_test" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c16d3ebb-4bb7-4fff-aeec-d6854c014651" name="Default Changelist" comment="" />
@@ -244,35 +243,42 @@
     <MESSAGE value="1. Add set_value(), remove_value() function and relevant code to expand the functionalities of the data structure.&#10;2. Add test_set_value and test_remove_value code." />
     <option name="LAST_COMMIT_MESSAGE" value="1. Add set_value(), remove_value() function and relevant code to expand the functionalities of the data structure.&#10;2. Add test_set_value and test_remove_value code." />
   </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_self.coverage" NAME="pytest for self Coverage Results" MODIFIED="1619184147168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_to_list.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_to_list Coverage Results" MODIFIED="1619185216801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$im_test.coverage" NAME="im_test Coverage Results" MODIFIED="1619234572670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Wang" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_remove_key.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_remove_key Coverage Results" MODIFIED="1619243478424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_remove_by_value.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_remove_by_value Coverage Results" MODIFIED="1619238453241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_get_by_key.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_get_by_key Coverage Results" MODIFIED="1619186033454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_from_list_2.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_from_list_2 Coverage Results" MODIFIED="1619187512561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$myTest.coverage" NAME="myTest Coverage Results" MODIFIED="1619138539449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_iter_and_next.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_iter_and_next Coverage Results" MODIFIED="1619186064870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_set_value.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_set_value Coverage Results" MODIFIED="1619242281144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_add.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_add Coverage Results" MODIFIED="1619184828990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_python_len_and_dictionary_size_equality.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_python_len_and_dictionary_size_equality Coverage Results" MODIFIED="1619187531690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_size.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_size Coverage Results" MODIFIED="1619185208395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_filter.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_filter Coverage Results" MODIFIED="1619186041870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_monoid_identity.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_monoid_identity Coverage Results" MODIFIED="1619186992550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_in_dictionary_immutable_test_py.coverage" NAME="pytest in dictionary_immutable_test.py Coverage Results" MODIFIED="1619232671884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Wang" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_from_list_to_list_equality.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_from_list_to_list_equality Coverage Results" MODIFIED="1619187522129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_dictionary_immutable_test_TestImmutableList_test_iter.coverage" NAME="pytest for dictionary_immutable_test.TestImmutableList.test_iter Coverage Results" MODIFIED="1619232797367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Wang" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$testTool.coverage" NAME="testTool Coverage Results" MODIFIED="1619187388131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_in_Dictionary_mutable_test_py.coverage" NAME="pytest in Dictionary_mutable_test.py Coverage Results" MODIFIED="1619262281448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_test_Dictionary_mutable_DictionaryTest_test_add.coverage" NAME="pytest for test_Dictionary_mutable.DictionaryTest.test_add Coverage Results" MODIFIED="1618508697993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_remove_value.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_remove_value Coverage Results" MODIFIED="1619243375696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_associativity.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_associativity Coverage Results" MODIFIED="1619187502317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_in_test_Dictionary_mutable_py.coverage" NAME="pytest in Dictionary_mutable_test.py Coverage Results" MODIFIED="1618508936639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_reduce_my.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_reduce_my Coverage Results" MODIFIED="1619186057198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_from_list.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_from_list Coverage Results" MODIFIED="1619185952148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_test_Dictionary_mutable_DictionaryTest_test_from_list_2.coverage" NAME="pytest for test_Dictionary_mutable.DictionaryTest.test_from_list_2 Coverage Results" MODIFIED="1618508715839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_remove_by_key.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_remove_by_key Coverage Results" MODIFIED="1619185194986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
-    <SUITE FILE_PATH="coverage/Data_Structure_Implementation$pytest_for_Dictionary_mutable_test_DictionaryTest_test_map_my.coverage" NAME="pytest for Dictionary_mutable_test.DictionaryTest.test_map_my Coverage Results" MODIFIED="1619186049533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Chen" />
+  <component name="WindowStateProjectService">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1620741802154">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620741802154" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1620741802154">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620741802154" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1620741802154">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620741802154" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1620741802154">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620741802154" />
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1620741112703">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620741112703" />
+    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1620741112703">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1620741112703" />
+    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1620741112703">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1620741112703" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1620741112703">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1620741112703" />
+    <state x="270" y="57" key="SettingsEditor" timestamp="1620740422323">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1620740422323" />
   </component>
 </project>

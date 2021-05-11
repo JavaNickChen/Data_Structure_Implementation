@@ -184,6 +184,8 @@ class TestImmutableList(unittest.TestCase):
         self.assertEqual(dictionary_immutable.find(p, 2), [2, 6])
         self.assertEqual(dictionary_immutable.find(p, 1), [1, 5])
         self.assertEqual(dictionary_immutable.find(p, None), [-1, -1])
+        self.assertRaises(
+            Exception, dictionary_immutable.find, (p, 5))
 
     def test_map(self):
         p = dictionary_immutable.Hashdic()
