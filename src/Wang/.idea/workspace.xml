@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3825979-74a1-4356-9ab6-cc3cb4e06d58" name="Default Changelist" comment="FIX some problems&#10;Include:&#10;1. add an implement of __iter__ interface&#10;2. add PBT test to assert equal for from_list and to_list&#10;3. add test for new iter interface">
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary_immutable.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary_immutable.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +99,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for dictionary_immutable_test.TestImmutableList.test_map" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for dictionary_immutable_test.TestImmutableList.test_to_list" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Wang" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -107,7 +109,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;dictionary_immutable_test.TestImmutableList.test_map&quot;" />
+      <option name="_new_target" value="&quot;dictionary_immutable_test.TestImmutableList.test_to_list&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -128,17 +130,17 @@
     <list>
       <item itemvalue="Python.dictionary_immutable" />
       <item itemvalue="Python tests.Unittests in dictionary_immutable_test.py" />
-      <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_map" />
       <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList" />
       <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_immutability_check" />
+      <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_to_list" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Unittests in dictionary_immutable_test.py" />
-        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_immutability_check" />
+        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_to_list" />
         <item itemvalue="Python.dictionary_immutable" />
+        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_immutability_check" />
         <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList" />
-        <item itemvalue="Python tests.Unittests for dictionary_immutable_test.TestImmutableList.test_map" />
       </list>
     </recent_temporary>
   </component>
@@ -224,22 +226,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620737466053" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1620737749650">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1620821623619">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620737749650" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1620737749650">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620821623619" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1620821623619">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620737749650" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1620737749650">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620821623619" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1620821623619">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620737749650" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1620737749650">
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620821623619" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1620821623619">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620737749650" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620821623619" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1619542294353">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

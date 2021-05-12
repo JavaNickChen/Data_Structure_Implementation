@@ -1,17 +1,18 @@
 import copy
-from typing import Callable, TypeVar, Any
+from typing import Callable, TypeVar, Any,Generic, List
 import typing
 
+VI = TypeVar("VI", int ,list)
 
-class Hashdic:
+class Hashdic(Generic[VI]):
     def __init__(self, Hashcode: int = 2048):
         """
 
         :param Hashcode: max len of hashset
         """
         self.code = Hashcode
-        self.key = [-1 for i in range(self.code)]
-        self.value = [-1 for i in range(self.code)]
+        self.key = [-1 for i in range(self.code)]  #type: List[Any]
+        self.value= [-1 for i in range(self.code)]  #type: List[Any]
         self.size = 0
 
     def __eq__(self, other: Any) -> bool:
@@ -163,7 +164,7 @@ def to_list(h: Hashdic) -> list:
     :param h: dictionary
     :return:  a list
     """
-    outlist = []
+    outlist = [] #type: List[Any]
     if not h:
         return outlist
     for i in range(0, len(h.key)):
@@ -239,7 +240,7 @@ def mconcat(a: Hashdic, b: Hashdic) -> Hashdic:
     :return: A dictionary formed by combining two dictionaries
     """
     if not a and not b:
-        return None
+        return a
     new = Hashdic()
     if not a:
         new.size = b.size
@@ -317,7 +318,7 @@ def map(a: Hashdic, f: Callable[[int], int]) -> Hashdic:
     return new
 
 
-def reduce(a: Hashdic, f: Callable[[int], int], state: int) -> int:
+def reduce(a: Hashdic, f: Callable[[int,int], int], state: int) -> int:
     """
     The reduce() function accumulates the elements in the parameter sequence.
     :param a: a dictionary
@@ -336,7 +337,6 @@ def reduce(a: Hashdic, f: Callable[[int], int], state: int) -> int:
             while temp[1] != -1:
                 temp = temp[1]
                 tempv = tempv[1]
-                tempv[0] = f(tempv[0])
                 instate = f(tempv[0], instate)
     return instate
 
