@@ -1,14 +1,13 @@
 import logging
 import functools
-from typing import List, TypeVar, Tuple, Callable
+import copy
+from typing import List, Tuple, Callable, Union
 
-from TestUtils import *
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-keyType = TypeVar("keyType", int, str, float, tuple, set, list)
-valueType = TypeVar("valueType", int, str, float, bool, tuple, set, list, dict)
-self_dict = TypeVar("self-defined dictionary object")
+keyType = Union[int, str, float, tuple, set, list]
+valueType = Union[int, str, float, bool, tuple, set, list, dict]
 
 
 class ChainNode:
@@ -16,7 +15,10 @@ class ChainNode:
         """
         To initialize the variables used to store the key and value.
         """
-        self.key = None  # type: keyType
+        # Assign -1 to conform to the specification of the typing hint.
+        # Since the 'key' will not be called and used before it is assigned,
+        # the assignment here will not have a bad effect.
+        self.key = -1  # type: keyType
         # The dictionary support the different values with the same key.
         self.values = []  # type: List[valueType]
 
@@ -48,16 +50,22 @@ class Dictionary:
         self.iter_chain_node_index = -1  # type: int
         self.iter_value_index = -1  # type: int
         # To store values and key if there are multiple values.
-        self.iter_values = None  # type:List[valueType]
-        self.iter_key = None  # type: keyType
+        self.iter_values = []  # type:List[valueType]
+        # The reason for the assignment is the same as the key assignment in ChainNode.
+        self.iter_key = -1  # type: keyType
 
-    def __eq__(self, other: self_dict) -> bool:
+    def __eq__(self, other: object) -> bool:
         """
         To determine whether two custom dictionary objects contain the same keys and related values.
         :param other: Another custom dictionary object to compare
         :return: If the two objects' keys and corresponding values are exactly the same, return True;
         Otherwise, return False.
         """
+        # Argument 1 of "__eq__" is incompatible with supertype "object";
+        # supertype defines the argument type as "object"
+        # So, the type of other shouldn't lower than 'object'. For that intention, add the following two line code.
+        if not isinstance(other, Dictionary):
+            return NotImplemented
         lst_1 = self.to_list()
         lst_2 = other.to_list()
         is_equal = True
@@ -67,6 +75,109 @@ class Dictionary:
                 break
         return is_equal
 
+    def __iter__(self) -> 'Dictionary':
+        """
+        To get a iterable object.
+        :return: A custom dictionary object, i.e. an deeply copied object.
+        """
+        return copy.deepcopy(self)
+
+    def __next__(self) -> Tuple[keyType, valueType]:
+        """
+        To get the next key-value item.
+        :return: The next key-value item.
+        """
+        key = None
+        value = None
+        # To determine if it has encountered a situation where a key has multiple values.
+        if (len(self.iter_values) != 0) and (self.iter_value_index < len(self.iter_values) - 1):
+            self.iter_value_index += 1
+            key = self.iter_key
+            value = self.iter_values[self.iter_value_index]
+            return key, value
+        else:
+            self.iter_value_index = -1
+            self.iter_values = []
+
+        def get_new_head_node_index(old_head_node_index: int) -> int:
+            """
+            To find next node if the nodes in this chain are all visited.
+            :param old_head_node_index: Subscript of the head node where the last accessed key-value pair is.
+            :return: The subscript of the head node where the key-value pair has not been accessed; else return -1, if there's no new pair.
+            """
+            # '-1' means that there is no more new node not visited.
+            new_head_index = -1
+            if old_head_node_index < self.length - 1:
+                for index in range(old_head_node_index + 1, self.length):
+                    if len(self.hashTable[index].keys) > 0:
+                        new_head_index = index
+                        break
+            return new_head_index
+
+        head_node = self.hashTable[self.iter_head_node_index]
+        # head_node.count > 0 means node existing.
+        if len(head_node.keys) > 0:
+            # There are nodes in the linked list is not accessed
+            self.iter_chain_node_index += 1
+            if len(head_node.keys) > self.iter_chain_node_index:
+                keys_values_list = head_node.singlyLinkedList
+                node = keys_values_list[self.iter_chain_node_index]
+                key = node.key
+                if len(node.values) == 1:
+                    value = node.values[0]
+                else:
+                    self.iter_values = node.values
+                    value = node.values[0]
+                    self.iter_key = node.key
+                    self.iter_value_index += 1
+
+            # All nodes in the linked list have been accessed. The new node should be accessed.
+            else:
+                # Find the hash address of the next node.
+                new_hash_address = get_new_head_node_index(self.iter_head_node_index)
+                # Find a new node that has not been visited.
+                if new_hash_address != -1:
+                    # update the hash address and the node index.
+                    self.iter_head_node_index = new_hash_address
+                    self.iter_chain_node_index = 0
+                    head_node = self.hashTable[new_hash_address]
+
+                    keys_values_list = head_node.singlyLinkedList
+                    node = keys_values_list[self.iter_chain_node_index]
+                    key = node.key
+                    if len(node.values) == 1:
+                        value = node.values[0]
+                    else:
+                        self.iter_values = node.values
+                        value = node.values[0]
+                        self.iter_key = node.key
+                        self.iter_value_index = 0
+                # There are no new and accessible nodes.
+                else:
+                    raise StopIteration
+        else:
+            new_hash_address = get_new_head_node_index(self.iter_head_node_index)
+            if new_hash_address != -1:
+                self.iter_head_node_index = new_hash_address
+                self.iter_chain_node_index = 0
+                head_node = self.hashTable[new_hash_address]
+
+                keys_values_list = head_node.singlyLinkedList
+                node = keys_values_list[self.iter_chain_node_index]
+                key = node.key
+                if len(node.values) == 1:
+                    value = node.values[0]
+                else:
+                    self.iter_values = node.values
+                    value = node.values[0]
+                    self.iter_key = node.key
+                    self.iter_value_index = 0
+            # There is no new and accessible node.
+            else:
+                raise StopIteration
+        return key, value
+
+
     def get_hash_address(self, key: keyType) -> int:
         """
         To convert the 'key' to hash address.
@@ -74,11 +185,12 @@ class Dictionary:
         :return: The hash address of the key.
         """
         # List and set are unhashable type. So transform the type into 'tuple' if needed.
-        if type(key) is set:
-            key = tuple(key)
-        elif type(key) is list:
-            key = tuple(key)
-        return key.__hash__() % self.length
+        tmp = None
+        if isinstance(key, set):
+            tmp = tuple(key)
+        elif isinstance(key, list):
+            tmp = tuple(key)
+        return tmp.__hash__() % self.length
 
     def validate(self, key: keyType, value: valueType) -> bool:
         """
@@ -105,13 +217,13 @@ class Dictionary:
         :param key: The "key" which is needed to be validated.
         :return:  True, if key is valid; otherwise, False.
         """
-        if type(key) in [dict, bool]:
+        if isinstance(key, (dict,bool)):
             raise Exception
         if key is None:
             raise Exception
         # Numerical key object has no len(),
         # so explicitly specify which types are not allowed to use empty value as keys
-        if (type(key) in [str, tuple, set, list]) and (len(key) == 0):
+        if isinstance(key, (str, tuple, set, list)) and (len(key) == 0):
             raise Exception
         return True
 
@@ -128,28 +240,31 @@ class Dictionary:
         head_node = self.hashTable[hash_address]
 
         # To uniform form of key
-        if type(key) in [list, set]:
-            key = tuple(key)
+        uniform_key = key
+        if isinstance(key, (list, set)):
+            uniform_key = tuple(key)
+        # else:
+        #     uniform_key = key
         # Create a new node and assign values.
         node_new = ChainNode()
-        node_new.key = key
+        node_new.key = uniform_key
         node_new.values.append(value)
 
         # 'head_node.count == 0' means that there is no collision.
         if head_node.count == 0:
             head_node.singlyLinkedList.append(node_new)
             head_node.count = 1
-            head_node.keys.append(key)
+            head_node.keys.append(uniform_key)
         else:
             # To deal with collision.
-            if key not in head_node.keys:
+            if uniform_key not in head_node.keys:
                 head_node.singlyLinkedList.append(node_new)
-                head_node.keys.append(key)
+                head_node.keys.append(uniform_key)
                 head_node.count = head_node.count + 1
             else:
                 # For the same 'key', determine whether 'value' already exists. If not, then store.
                 for index in range(len(head_node.singlyLinkedList)):
-                    if key == head_node.singlyLinkedList[index].key:
+                    if uniform_key == head_node.singlyLinkedList[index].key:
                         if value not in head_node.singlyLinkedList[index].values:
                             head_node.singlyLinkedList[index].values.append(value)
                             head_node.count = head_node.count + 1
@@ -275,9 +390,9 @@ class Dictionary:
             tmp_1 = item_1[1]
             tmp_2 = item_2[1]
             # 'values' could be list or set which don't have hash() function.
-            if type(item_1[1]) in [list, set]:
+            if isinstance(item_1[1], (list, set)):
                 tmp_1 = tuple(item_1[1])
-            if type(item_2[1]) in [list, set]:
+            if isinstance(item_2[1], (list, set)):
                 tmp_2 = tuple(item_2[1])
             if hash(tmp_1) < hash(tmp_2):
                 return -1
@@ -291,8 +406,8 @@ class Dictionary:
         key_count, value_count = self.size()
         if (key_count == 0) and (value_count == 0):
             return []
-        keys = []
-        values = []
+        keys = []  # type: List[keyType]
+        values = []  # type: List[List]
         for head_node in self.hashTable:
             if head_node.count != 0:
                 for node in head_node.singlyLinkedList:
@@ -313,13 +428,19 @@ class Dictionary:
         """
         key_size, value_size = self.size()
         if key_size > 0:
-            self.__init__()
+            # Clear the content of the existing custom dictionary object to the initial state.
+            self.length = 10
+            self.hashTable = [HeadNode() for i in range(self.length)]
+            self.iter_head_node_index = 0
+            self.iter_chain_node_index = -1
+            self.iter_value_index = -1
+            self.iter_values = []
         for element in lst:
             key = element[0]
             value = element[1]
             self.add(key, value)
 
-    def get_by_key(self, key: keyType) -> valueType:
+    def get_by_key(self, key: keyType) -> Union[valueType, List[valueType]]:
         """
         Find element by specific key.
         :param key: the unique element used to get key-value pair.
@@ -334,10 +455,10 @@ class Dictionary:
                 if node.key == key:
                     result = node
                     break
-        else:
+        if not isinstance(result, ChainNode):
             raise Exception
-        # If there is only one value in the 'values', it is better to return a value, not a list.
         if len(result.values) == 1:
+            # If there is only one value in the 'values', it is better to return a value, not a list.
             return result.values[0]
         else:
             return result.values
@@ -349,7 +470,7 @@ class Dictionary:
         :return: A list that store the result of items after self-defined operation.
         """
         result = []
-        it = iter(self)
+        it = self.__iter__()
         while True:
             try:
                 key, value = next(it)
@@ -361,7 +482,7 @@ class Dictionary:
                 break
         return result
 
-    def map_my(self, func: Callable[[int], int]) -> None:
+    def map_my(self, func: Callable[[Union[float, int]], int]) -> None:
         """
         To map structure by specific function.
         :param func:  the function defined by users.
@@ -373,13 +494,12 @@ class Dictionary:
             :param lst: A list object like [element1, [element2, element3], element4].
             :return:  A list that store the result of items after user-defined operation.
             """
-            tmp = []
+            tmp = []  # type: List[valueType]
             for e in lst:
-                if type(e) in [list, set, tuple]:
-                    e = list(e)
-                    tmp.append(list_func(e))
+                if isinstance(e, (list, set, tuple)):
+                    tmp.append(list_func(list(e)))
                 else:
-                    if type(e) in [int, float]:
+                    if isinstance(e, (float, int)):
                         tmp.append(func(e))
                     else:
                         raise Exception
@@ -398,127 +518,30 @@ class Dictionary:
         :return: A digital that store the result of items after user-defined operation.
         """
         iterable = self.get_by_key(key)
-        it = iter(iterable)
+        tmp = []  # type: List
+        if not isinstance(iterable, list):
+            tmp = list([iterable])
+        else:
+            tmp = iterable
+        it = iter(tmp)
         value = initial_state
         for element in it:
             # Support the element with one-dimension list
-            if type(element) is list:
+            if isinstance(element, list):
                 for e in element:
                     value = func(value, e)
             else:
                 value = func(value, element)
         return value
 
-    def __iter__(self) -> self_dict:
-        """
-        To get a iterable object.
-        :return: A custom dictionary object, i.e. an deeply copied object.
-        """
-        dictionary = Dictionary()
-        dictionary.from_list(self.to_list())
-        return dictionary
-
-    def __next__(self) -> Tuple[keyType, valueType]:
-        """
-        To get the next key-value item.
-        :return: The next key-value item.
-        """
-        key = None
-        value = None
-        # To determine if it has encountered a situation where a key has multiple values.
-        if (self.iter_values is not None) and (self.iter_value_index < len(self.iter_values) - 1):
-            self.iter_value_index += 1
-            key = self.iter_key
-            value = self.iter_values[self.iter_value_index]
-            return key, value
-        else:
-            self.iter_value_index = -1
-            self.iter_values = None
-
-        def get_new_head_node_index(old_head_node_index: int) -> int:
-            """
-            To find next node if the nodes in this chain are all visited.
-            :param old_head_node_index: Subscript of the head node where the last accessed key-value pair is.
-            :return: The subscript of the head node where the key-value pair has not been accessed; else return -1, if there's no new pair.
-            """
-            # '-1' means that there is no more new node not visited.
-            new_head_index = -1
-            if old_head_node_index < self.length - 1:
-                for index in range(old_head_node_index + 1, self.length):
-                    if len(self.hashTable[index].keys) > 0:
-                        new_head_index = index
-                        break
-            return new_head_index
-
-        head_node = self.hashTable[self.iter_head_node_index]
-        # head_node.count > 0 means node existing.
-        if len(head_node.keys) > 0:
-            # There are nodes in the linked list is not accessed
-            self.iter_chain_node_index += 1
-            if len(head_node.keys) > self.iter_chain_node_index:
-                keys_values_list = head_node.singlyLinkedList
-                node = keys_values_list[self.iter_chain_node_index]
-                key = node.key
-                if len(node.values) == 1:
-                    value = node.values[0]
-                else:
-                    self.iter_values = node.values
-                    value = node.values[0]
-                    self.iter_key = node.key
-                    self.iter_value_index += 1
-
-            # All nodes in the linked list have been accessed. The new node should be accessed.
-            else:
-                # Find the hash address of the next node.
-                new_hash_address = get_new_head_node_index(self.iter_head_node_index)
-                # Find a new node that has not been visited.
-                if new_hash_address != -1:
-                    # update the hash address and the node index.
-                    self.iter_head_node_index = new_hash_address
-                    self.iter_chain_node_index = 0
-                    head_node = self.hashTable[new_hash_address]
-
-                    keys_values_list = head_node.singlyLinkedList
-                    node = keys_values_list[self.iter_chain_node_index]
-                    key = node.key
-                    if len(node.values) == 1:
-                        value = node.values[0]
-                    else:
-                        self.iter_values = node.values
-                        value = node.values[0]
-                        self.iter_key = node.key
-                        self.iter_value_index = 0
-                # There are no new and accessible nodes.
-                else:
-                    raise StopIteration
-        else:
-            new_hash_address = get_new_head_node_index(self.iter_head_node_index)
-            if new_hash_address != -1:
-                self.iter_head_node_index = new_hash_address
-                self.iter_chain_node_index = 0
-                head_node = self.hashTable[new_hash_address]
-
-                keys_values_list = head_node.singlyLinkedList
-                node = keys_values_list[self.iter_chain_node_index]
-                key = node.key
-                if len(node.values) == 1:
-                    value = node.values[0]
-                else:
-                    self.iter_values = node.values
-                    value = node.values[0]
-                    self.iter_key = node.key
-                    self.iter_value_index = 0
-            # There is no new and accessible node.
-            else:
-                raise StopIteration
-        return key, value
-
-    def mconcat(self, dictionary: self_dict) -> None:
+    def mconcat(self, dictionary: 'Dictionary') -> None:
         """
         To concatenate two dictionary objects and self stores the result.
         :param dictionary: A dictionary object.
         :return: None
         """
+        if not isinstance(dictionary, Dictionary):
+            raise Exception
         # to traverse the 'dictionary' and add the special nodes of 'dictionary' to self.
         for index in range(self.length):
             if dictionary.hashTable[index].count != 0:
@@ -532,7 +555,7 @@ class Dictionary:
                             if element not in [self.get_by_key(node.key)]:
                                 self.add(node.key, element)
 
-    def mempty(self) -> self_dict:
+    def mempty(self) -> 'Dictionary':
         """
         To return an mempty element in the dictionary object set.
         :return: A custom dictionary object.

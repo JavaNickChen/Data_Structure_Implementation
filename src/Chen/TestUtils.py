@@ -1,9 +1,9 @@
 from Dictionary_mutable import Dictionary
 import functools
-from typing import List, Tuple, TypeVar
+from typing import List, Tuple, Union
 
-keyType = TypeVar("keyType", int, str, float, tuple, set, list)
-valueType = TypeVar("valueType", int, str, float, bool, tuple, set, list, dict)
+keyType = Union[int, str, float, tuple, set, list]
+valueType = Union[int, str, float, bool, tuple, set, list, dict]
 
 # Define the following functions for processing the test data as Dictionary() object does.
 
@@ -15,12 +15,16 @@ def lst_validate(lst: List[Tuple[keyType, valueType]]) -> List[Tuple[keyType, va
     :param lst: a list object such as [(key_1, value_1), ..., (key_n, value_n)]
     :return: A legal list.
     """
-    dictionary = Dictionary()
+    dictionary = Dictionary()  # type:Dictionary
     indexes = []
     for index in range(len(lst)):
         try:
-            if type(lst[index][0]) in [set, list]:
-                lst[index][0] = tuple(lst[index][0])
+            key = lst[index][0]
+            if isinstance(key, (set, list)):
+                key = tuple(key)
+                value = lst[index][1]
+                # 'tuple' object does not support item assignment,so replace the whole tuple object.
+                lst[index] = (key, value)
             dictionary.validate(lst[index][0], lst[index][1])
         except Exception:
             indexes.append(index)

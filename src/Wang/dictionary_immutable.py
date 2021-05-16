@@ -1,8 +1,8 @@
 import copy
-from typing import Callable, TypeVar, Any,Generic, List
+from typing import Callable, TypeVar, Any, Generic, List
 import typing
 
-VI = TypeVar("VI", int ,list)
+VI = TypeVar("VI", int, list)
 
 class Hashdic(Generic[VI]):
     def __init__(self, Hashcode: int = 2048):

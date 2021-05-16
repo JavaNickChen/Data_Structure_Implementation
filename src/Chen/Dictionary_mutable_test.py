@@ -37,7 +37,7 @@ class DictionaryTest(unittest.TestCase):
         self.assertEqual(dictionary.to_list(), TestUtils.sort(lst))
         # 2. Add invalid key
         self.assertRaises(Exception, dictionary.add, {'key1': 2, "key2": 3}, "dict_key_test")
-        # 2. Add None value
+        # 3. Add None value
         self.assertRaises(Exception, dictionary.add, "score", None)
 
     def test_set_value(self):
